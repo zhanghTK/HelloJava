@@ -6,14 +6,14 @@ import org.junit.Test;
  * Created by ZhangHao on 2016/3/20.
  * 测试反射获取类信息
  */
-public class ReflectionUtilTest {
+public class ClassAnalyzerTest {
 
     /**
      * 测试获取类构造器信息
      */
     @Test
     public void testGetConstructors(){
-        System.out.println(ReflectionUtil.getConstructors(Double.class));
+        System.out.println(ClassAnalyzer.getConstructors(Double.class));
     }
 
     /**
@@ -21,7 +21,7 @@ public class ReflectionUtilTest {
      */
     @Test
     public void testGetMethods() throws Exception {
-        System.out.println(ReflectionUtil.getMethods(Double.class));
+        System.out.println(ClassAnalyzer.getMethods(Double.class));
     }
 
     /**
@@ -29,7 +29,7 @@ public class ReflectionUtilTest {
      */
     @Test
     public void testPrintField() throws Exception {
-        System.out.println(ReflectionUtil.getField(Double.class));
+        System.out.println(ClassAnalyzer.getField(Double.class));
     }
 
     /**
@@ -37,6 +37,6 @@ public class ReflectionUtilTest {
      */
     @Test
     public void testPrintClassInformation() throws Exception {
-        System.out.println(ReflectionUtil.getClassInformation(Double.class));
+        System.out.println(ClassAnalyzer.getClassInformation(Double.class));
     }
 }

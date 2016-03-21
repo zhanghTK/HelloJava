@@ -9,7 +9,7 @@ import java.lang.reflect.Modifier;
  * Created by ZhangHao on 2016/3/20.
  * 反射分析类的字段，方法，构造
  */
-public class ReflectionUtil {
+public class ClassAnalyzer {
 
     /**
      * 获取类的字段、方法、构造信息

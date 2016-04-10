@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * Created by ZhangHao on 2016/3/21.
- * 测试反射获取对象信息
+ * 娴嬭瘯鍙嶅皠鑾峰彇瀵硅薄淇℃伅
  */
 public class ObjectAnalyzerTest {
 

@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 /**
  * Created by ZhangHao on 2016/3/21.
- * 测试反射调用方法
+ * 娴嬭瘯鍙嶅皠璋冪敤鏂规硶
  */
 public class InvokeTest {
     @Test

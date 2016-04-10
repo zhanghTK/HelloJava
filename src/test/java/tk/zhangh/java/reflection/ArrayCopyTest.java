@@ -6,12 +6,12 @@ import java.util.Arrays;
 
 /**
  * Created by ZhangHao on 2016/3/21.
- * ²âÊÔÊı×é¿½±´
+ * æµ‹è¯•æ•°ç»„æ‹·è´
  */
 public class ArrayCopyTest {
 
     /**
-     * ²âÊÔÊı×é¿½±´£¬ÀàĞÍ¶ªÊ§
+     * æµ‹è¯•æ•°ç»„æ‹·è´ï¼Œç±»å‹ä¸¢å¤±
      */
     @Test
     public void testBadCopyOf(){
@@ -21,7 +21,7 @@ public class ArrayCopyTest {
     }
 
     /**
-     * ²âÊÔÊı×é¿½±´
+     * æµ‹è¯•æ•°ç»„æ‹·è´
      */
     @Test
     public void testCopyOf(){

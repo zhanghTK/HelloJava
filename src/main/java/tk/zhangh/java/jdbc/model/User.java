@@ -2,7 +2,7 @@ package tk.zhangh.java.jdbc.model;
 
 /**
  * Created by ZhangHao on 2016/3/25.
- * ¼òµ¥
+ * ç®€å•
  */
 public class User {
     private int id;

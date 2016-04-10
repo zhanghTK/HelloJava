@@ -4,14 +4,14 @@ import java.lang.reflect.Array;
 
 /**
  * Created by ZhangHao on 2016/3/21.
- * Êı×é¿½±´ÊµÏÖ
+ * æ•°ç»„æ‹·è´å®ç°
  */
 public class ArrayCopy {
     /**
-     * Êı×é¿½±´£¬¿½±´ºóÀàĞÍ¶ªÊ§
-     * @param array ´ı¿½±´Êı×é
-     * @param newLength ¿½±´ºóĞÂÊı×é³¤¶È
-     * @return ¿½±´ºóµÄÊı×é£¬ÀàĞÍ¶ªÊ§
+     * æ•°ç»„æ‹·è´ï¼Œæ‹·è´åç±»å‹ä¸¢å¤±
+     * @param array å¾…æ‹·è´æ•°ç»„
+     * @param newLength æ‹·è´åæ–°æ•°ç»„é•¿åº¦
+     * @return æ‹·è´åçš„æ•°ç»„ï¼Œç±»å‹ä¸¢å¤±
      */
     public static Object[] badCopyOf(Object[] array, int newLength){
         Object[] newArray = new Object[newLength];
@@ -20,20 +20,20 @@ public class ArrayCopy {
     }
 
     /**
-     * Êı×é¿½±´
-     * @param array ´ı¿½±´Êı×é
-     * @param newLength ¿½±´ºóĞÂÊı×é³¤¶È
-     * @return ¿½±´ºóµÄÊı×é
+     * æ•°ç»„æ‹·è´
+     * @param array å¾…æ‹·è´æ•°ç»„
+     * @param newLength æ‹·è´åæ–°æ•°ç»„é•¿åº¦
+     * @return æ‹·è´åçš„æ•°ç»„
      */
     public static Object copyOf(Object array, int newLength){
         Class clazz = array.getClass();
         if (!clazz.isArray()){
             return null;
         }
-        Class componentType = clazz.getComponentType();  // »ñÈ¡Êı×é¶ÔÏó
-        int length = Array.getLength(array);  // Ô­Ê¼Êı×é³¤¶È
-        Object newArray = Array.newInstance(componentType, newLength);  // ´´½¨ĞÂÊı×é
-        System.arraycopy(array, 0, newArray, 0, Math.min(length, newLength));  // ¸´ÖÆ
+        Class componentType = clazz.getComponentType();  // è·å–æ•°ç»„å¯¹è±¡
+        int length = Array.getLength(array);  // åŸå§‹æ•°ç»„é•¿åº¦
+        Object newArray = Array.newInstance(componentType, newLength);  // åˆ›å»ºæ–°æ•°ç»„
+        System.arraycopy(array, 0, newArray, 0, Math.min(length, newLength));  // å¤åˆ¶
         return newArray;
     }
 }

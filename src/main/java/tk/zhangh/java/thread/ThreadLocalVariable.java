@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Ä£ÄâThreadLocal
+ * æ¨¡æ‹ŸThreadLocal
  * Created by ZhangHao on 2016/4/6.
  */
 public class ThreadLocalVariable <T>{

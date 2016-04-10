@@ -8,64 +8,64 @@ import java.util.ArrayList;
 
 /**
  * Created by ZhangHao on 2016/3/21.
- * ·´Éä·ÖÎö¶ÔÏóµÄĞÅÏ¢
+ * åå°„åˆ†æå¯¹è±¡çš„ä¿¡æ¯
  */
 public class ObjectAnalyzer {
     private ArrayList<Object> visited = new ArrayList<Object>();
 
     public String getObjectInfor(Object object){
-        // ÅĞ¿Õ
+        // åˆ¤ç©º
         if (object == null){
             return "null";
         }
-        // ÒÑ·ÃÎÊ
+        // å·²è®¿é—®
         if (visited.contains(object)){
             return "...";
         }
-        // Ìí¼Ó·ÃÎÊ
+        // æ·»åŠ è®¿é—®
         visited.add(object);
-        // »ñÈ¡ÀàĞÍ
+        // è·å–ç±»å‹
         Class clazz = object.getClass();
-        // ´¦Àí×Ö·û´®ÀàĞÍ
+        // å¤„ç†å­—ç¬¦ä¸²ç±»å‹
         if (clazz == String.class){
             return (String)object;
         }
-        // ´¦ÀíÊı×éÀàĞÍ
+        // å¤„ç†æ•°ç»„ç±»å‹
         if (clazz.isArray()){
             String result = clazz.getComponentType() + "[]{";
-            // ±éÀúÊı×é
+            // éå†æ•°ç»„
             for (int i = 0; i < Array.getLength(object); i++) {
                 if (i > 0){
                     result += ",";
                 }
                 Object valIndex = Array.get(object, i);
                 if (clazz.getComponentType().isPrimitive()){
-                    // Êı×éÔªËØÊÇ»ù±¾ÀàĞÍ
+                    // æ•°ç»„å…ƒç´ æ˜¯åŸºæœ¬ç±»å‹
                     result += valIndex;
                 }else {
-                    // Êı×éÔªËØ²»ÊÇ»ù±¾ÀàĞÍ¡£µİ¹éµ÷ÓÃ
+                    // æ•°ç»„å…ƒç´ ä¸æ˜¯åŸºæœ¬ç±»å‹ã€‚é€’å½’è°ƒç”¨
                     result += getObjectInfor(valIndex);
                 }
             }
             return result + "}";
         }
 
-        // ´¦ÀíÒıÓÃÀàĞÍ
+        // å¤„ç†å¼•ç”¨ç±»å‹
         String result = clazz.getName();
         do {
             result += "[";
             Field[] fields = clazz.getDeclaredFields();
             AccessibleObject.setAccessible(fields, true);
             for (Field field : fields){
-                // ²»´¦Àístatic×Ö¶Î£¬²»ÊôÓÚ¶ÔÏóĞÅÏ¢
+                // ä¸å¤„ç†staticå­—æ®µï¼Œä¸å±äºå¯¹è±¡ä¿¡æ¯
                 if (!Modifier.isStatic(field.getModifiers())){
                     if (!result.endsWith("[")){
                         result += ",";
                     }
-                    result += field.getName() + " = ";  // ÊôĞÔÃû
+                    result += field.getName() + " = ";  // å±æ€§å
                     try {
-                        Class fieldClass = field.getType();  // ÊôĞÔÀàĞÍ
-                        Object fieldVal =  field.get(object);  // ÊôĞÔÖµ
+                        Class fieldClass = field.getType();  // å±æ€§ç±»å‹
+                        Object fieldVal =  field.get(object);  // å±æ€§å€¼
                         if (fieldClass.isPrimitive()){
                             result += fieldVal;
                         }else {

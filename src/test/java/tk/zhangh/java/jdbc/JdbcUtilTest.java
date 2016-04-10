@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  * Created by ZhangHao on 2016/3/24.
- * jdbc helper ²âÊÔ
+ * jdbc helper æµ‹è¯•
  */
 public class JdbcUtilTest {
     private JdbcHelper jdbcHelper;

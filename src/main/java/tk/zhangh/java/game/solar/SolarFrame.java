@@ -1,8 +1,8 @@
 package tk.zhangh.java.game.solar;
 
-import tk.zhangh.java.game.solar.util.Constant;
-import tk.zhangh.java.game.solar.util.GameUtil;
-import tk.zhangh.java.game.solar.util.MyFrame;
+import tk.zhangh.java.game.util.Constant;
+import tk.zhangh.java.game.util.GameUtil;
+import tk.zhangh.java.game.util.MyFrame;
 
 import java.awt.*;
 

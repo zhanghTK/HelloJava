@@ -1,4 +1,4 @@
-package tk.zhangh.java.game.solar.util;
+package tk.zhangh.java.game.util;
 
 /**
  * 窗口使用常量类

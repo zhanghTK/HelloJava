@@ -1,4 +1,4 @@
-package tk.zhangh.java.game.solar.util;
+package tk.zhangh.java.game.util;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

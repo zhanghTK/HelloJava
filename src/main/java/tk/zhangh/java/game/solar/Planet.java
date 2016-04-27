@@ -1,6 +1,6 @@
 package tk.zhangh.java.game.solar;
 
-import tk.zhangh.java.game.solar.util.GameUtil;
+import tk.zhangh.java.game.util.GameUtil;
 
 import java.awt.*;
 

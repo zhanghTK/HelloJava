@@ -1,4 +1,4 @@
-package tk.zhangh.java.game.solar.util;
+package tk.zhangh.java.game.util;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;

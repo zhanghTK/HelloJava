@@ -9,13 +9,7 @@ import java.awt.event.KeyEvent;
  * 飞机大战，飞机类
  * Created by ZhangHao on 2016/4/27.
  */
-public class Plane {
-    private Image image;
-    private double x;
-    private double y;
-
-    private int speed = 10;
-
+public class Plane extends GameObject{
     private boolean left;
     private boolean up;
     private boolean right;
@@ -29,13 +23,14 @@ public class Plane {
         move();
     }
 
-    public Plane(String imagePath, double x, double y) {
+    public Plane(String imagePath, double x, double y, int speed) {
         super();
         this.image = GameUtil.getImage(imagePath);
         width = image.getWidth(null);
         height = image.getHeight(null);
         this.x = x;
         this.y = y;
+        this.speed = speed;
     }
 
     public Plane(){}

@@ -8,18 +8,16 @@ import java.awt.*;
  * 飞机大战，子弹类
  * Created by ZhangHao on 2016/4/27.
  */
-public class Bullet {
-    private double x;
-    private double y;
-    private int speed = 10;
+public class Bullet extends GameObject{
     private double degree;
-    private int width = 10;
-    private int height = 10;
 
     public Bullet(){
         degree = Math.random() * Math.PI * 2;
         y  = Constant.WINDOW_HEIGHT/2;
         x = Constant.WINDOW_WIDTH/2;
+        width = 10;
+        height = 10;
+        speed = 10;
     }
 
     public Rectangle getRect(){

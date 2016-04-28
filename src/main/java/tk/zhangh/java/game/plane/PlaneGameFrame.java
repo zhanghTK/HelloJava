@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class PlaneGameFrame extends MyFrame{
     Image bg = GameUtil.getImage("images/plane/bg.jpg");
-    Plane plane = new Plane("images/plane/plane.png", 50, 50);
+    Plane plane = new Plane("images/plane/plane.png", 50, 50, 15);
     ArrayList<Bullet> bulletArrayList = new ArrayList<Bullet>();
 
     @Override
@@ -37,6 +37,7 @@ public class PlaneGameFrame extends MyFrame{
 
         for (int i = 0; i < 50; i++) {
             Bullet bullet = new Bullet();
+            bullet.setSpeed(10);
             bulletArrayList.add(bullet);
         }
     }

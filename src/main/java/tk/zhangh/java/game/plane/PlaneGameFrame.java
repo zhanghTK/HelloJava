@@ -26,8 +26,21 @@ public class PlaneGameFrame extends MyFrame{
             bullet.draw(g);
             if (bullet.getRect().intersects(plane.getRect())){
                 System.out.println("boom");
+                plane.setLive(false);
+            }
+            if (!plane.isLive()){
+                pringOver(g, "GAME OVER", 100);
             }
         }
+    }
+
+    public void pringOver(Graphics g, String str, int size){
+        Color color = g.getColor();
+        g.setColor(Color.white);
+        Font font = new Font("宋体", Font.BOLD, size);
+        g.setFont(font);
+        g.drawString(str, 100, 200);
+        g.setColor(color);
     }
 
     @Override

@@ -14,13 +14,13 @@ public class Plane extends GameObject{
     private boolean up;
     private boolean right;
     private boolean down;
-
-    private int width;
-    private int height;
+    private boolean live = true;
 
     public void draw(Graphics g){
-        g.drawImage(image, (int)x, (int)y, null);
-        move();
+        if (live) {
+            g.drawImage(image, (int) x, (int) y, null);
+            move();
+        }
     }
 
     public Plane(String imagePath, double x, double y, int speed) {
@@ -154,5 +154,13 @@ public class Plane extends GameObject{
 
     public void setDown(boolean down) {
         this.down = down;
+    }
+
+    public boolean isLive() {
+        return live;
+    }
+
+    public void setLive(boolean live) {
+        this.live = live;
     }
 }

@@ -21,6 +21,9 @@ public class Plane {
     private boolean right;
     private boolean down;
 
+    private int width;
+    private int height;
+
     public void draw(Graphics g){
         g.drawImage(image, (int)x, (int)y, null);
         move();
@@ -29,6 +32,8 @@ public class Plane {
     public Plane(String imagePath, double x, double y) {
         super();
         this.image = GameUtil.getImage(imagePath);
+        width = image.getWidth(null);
+        height = image.getHeight(null);
         this.x = x;
         this.y = y;
     }
@@ -86,6 +91,10 @@ public class Plane {
             default:
                 break;
         }
+    }
+
+    public Rectangle getRect(){
+        return new Rectangle((int)x, (int)y, width, height);
     }
 
     public Image getImage() {

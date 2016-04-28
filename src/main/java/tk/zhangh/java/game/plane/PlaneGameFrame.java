@@ -24,6 +24,9 @@ public class PlaneGameFrame extends MyFrame{
         for (int i = 0; i < bulletArrayList.size(); i++) {
             Bullet bullet = bulletArrayList.get(i);
             bullet.draw(g);
+            if (bullet.getRect().intersects(plane.getRect())){
+                System.out.println("boom");
+            }
         }
     }
 

@@ -22,6 +22,10 @@ public class Bullet {
         x = Constant.WINDOW_WIDTH/2;
     }
 
+    public Rectangle getRect(){
+        return new Rectangle((int)x, (int)y, width, height);
+    }
+
     public void draw(Graphics g){
         Color color = g.getColor();
         g.setColor(Color.yellow);

@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
  * Created by ZhangHao on 2016/4/22.
  */
 public class MyFrame extends Frame {
-
+    private Image offScreenImage = null;
     /**
      * 加载窗口
      */
@@ -42,4 +42,14 @@ public class MyFrame extends Frame {
             }
         }
     }
+
+    public void update(Graphics g){
+        if (offScreenImage == null){
+            offScreenImage = this.createImage(Constant.WINDOW_WIDTH, Constant.WINDOW_HEIGHT);
+        }
+        Graphics gOff = offScreenImage.getGraphics();
+        paint(gOff);
+        g.drawImage(offScreenImage, 0, 0, null);
+    }
+
 }

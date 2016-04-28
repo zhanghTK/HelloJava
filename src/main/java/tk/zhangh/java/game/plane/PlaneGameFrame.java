@@ -19,6 +19,7 @@ public class PlaneGameFrame extends MyFrame{
     private ArrayList<Bullet> bulletArrayList = new ArrayList<Bullet>();
     private Date startTime;
     private Date endTime;
+    private Explode explode;
 
     @Override
     public void paint(Graphics g) {
@@ -28,6 +29,10 @@ public class PlaneGameFrame extends MyFrame{
             Bullet bullet = bulletArrayList.get(i);
             bullet.draw(g);
             if (bullet.getRect().intersects(plane.getRect())){
+                if (explode == null){
+                    explode = new Explode(plane.getX(), plane.getY());
+                }
+                explode.draw(g);
                 plane.setLive(false);
                 if (endTime == null){
                     endTime = new Date();

@@ -28,40 +28,40 @@ public class PlaneGameFrame extends MyFrame{
         for (int i = 0; i < bulletArrayList.size(); i++) {
             Bullet bullet = bulletArrayList.get(i);
             bullet.draw(g);
+            // 碰撞
             if (bullet.getRect().intersects(plane.getRect())){
                 if (explode == null){
+                    endTime = new Date();
                     explode = new Explode(plane.getX(), plane.getY());
                 }
                 explode.draw(g);
                 plane.setLive(false);
-                if (endTime == null){
-                    endTime = new Date();
-                }
+                break;
             }
-            if (!plane.isLive()){
-                int time = (int)(endTime.getTime()-startTime.getTime())/1000;
-                printMessage(g, "time:" + time + "s", 20, 120, 260, Color.white);
-                switch (time/10){
-                    case 0:
-                    case 1:
-                        printMessage(g, "初级", 100, 100, 200, Color.white);
-                        break;
-                    case 2:
-                    case 3:
-                        printMessage(g, "中级", 100, 100, 200, Color.white);
-                        break;
-                    case 4:
-                    case 5:
-                        printMessage(g, "高级", 100, 100, 200, Color.white);
-                        break;
-                    default:
-                        printMessage(g, "特级", 100, 100, 200, Color.white);
-                        break;
-                }
-            }else {
-                String time = String.valueOf((new Date().getTime()-startTime.getTime())/1000);
-                printMessage(g, time, 10, 30, 50, Color.yellow);
+        }
+        if (!plane.isLive()){
+            int time = (int)(endTime.getTime()-startTime.getTime())/1000;
+            printMessage(g, "time:" + time + "s", 20, 120, 260, Color.white);
+            switch (time/10){
+                case 0:
+                case 1:
+                    printMessage(g, "初级", 100, 100, 200, Color.white);
+                    break;
+                case 2:
+                case 3:
+                    printMessage(g, "中级", 100, 100, 200, Color.white);
+                    break;
+                case 4:
+                case 5:
+                    printMessage(g, "高级", 100, 100, 200, Color.white);
+                    break;
+                default:
+                    printMessage(g, "特级", 100, 100, 200, Color.white);
+                    break;
             }
+        }else {
+            String time = String.valueOf((new Date().getTime()-startTime.getTime())/1000);
+            printMessage(g, time, 10, 30, 50, Color.yellow);
         }
     }
 

@@ -13,9 +13,9 @@ public class Explode {
     int count;
 
     static {
-        for (int i = 0; i < 16; i++) {
-            images[i] = GameUtil.getImage("images/plane/explode/e"+i+1+".gif");
-            images[i].getWidth(null);
+        for (int i = 1; i <= 16; i++) {
+            images[i-1] = GameUtil.getImage("images/plane/explode/e" + i + ".gif");
+            images[i-1].getWidth(null);
         }
     }
 

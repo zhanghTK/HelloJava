@@ -19,6 +19,8 @@ public class ChannelThread implements Runnable{
     private DataOutputStream dataOutputStream;
     // 当前线程是否继续
     private boolean isRunning = true;
+    // 客户端名称
+    private String name;
 
     /**
      * 构造方法，初始化输入、输出流，所有客户端连接
@@ -31,6 +33,9 @@ public class ChannelThread implements Runnable{
             this.dataInputStream = new DataInputStream(client.getInputStream());
             this.dataOutputStream = new DataOutputStream(client.getOutputStream());
             allClient.add(this);
+            this.name = dataInputStream.readUTF();
+            sendMsg("欢迎"+ name +"进入聊天室", true);
+            sendOther(this.name + "新加入聊天室", true);
         } catch (IOException e) {
             CloseUtil.closeAll(dataInputStream, dataOutputStream);
             isRunning = false;
@@ -60,9 +65,12 @@ public class ChannelThread implements Runnable{
      * 向客户端发送数据
      * @param msg
      */
-    public void sendMsg(String msg){
+    public void sendMsg(String msg, boolean sys){
         if (msg == null || msg.equals("")){
             return;
+        }
+        if (sys){
+            msg  = "系统消息：" + msg;
         }
         try {
             dataOutputStream.writeUTF(msg);
@@ -78,13 +86,24 @@ public class ChannelThread implements Runnable{
     /**
      * 向除本线程外所有客户端线程发送数据
      */
-    public void sendAll(){
-        String msg = receiveMsg();
-        for(ChannelThread channel : allClient){
-            if (channel == this){
-                continue;
+    public void sendOther(String msg, boolean sys){
+        if (msg.startsWith("@") && msg.contains(":")){
+            // 私聊
+            String name = msg.substring(1, msg.indexOf(":"));
+            String content = msg.substring(msg.indexOf(":") + 1);
+            for (ChannelThread channelThread : allClient){
+                if (channelThread.name.equals(name)){
+                    channelThread.sendMsg(this.name + "私信" + name + "," + content, sys);
+                }
             }
-            channel.sendMsg(msg);
+        }else {
+            // 群聊
+            for (ChannelThread channel : allClient) {
+                if (channel == this) {
+                    continue;
+                }
+                channel.sendMsg(msg, sys);
+            }
         }
     }
 
@@ -94,7 +113,7 @@ public class ChannelThread implements Runnable{
     @Override
     public void run() {
         while (isRunning){
-            sendAll();
+            sendOther(receiveMsg(), false);
         }
     }
 }

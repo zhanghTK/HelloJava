@@ -1,7 +1,7 @@
 package tk.zhangh.java.annotation;
 
 /**
- * Êı¾İ¿â×Ö¶ÎĞÅÏ¢
+ * æ•°æ®åº“å­—æ®µä¿¡æ¯
  * Created by ZhangHao on 2016/8/8.
  */
 public class Column {

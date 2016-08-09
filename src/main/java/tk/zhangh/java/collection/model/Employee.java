@@ -1,4 +1,4 @@
-package tk.zhangh.java.model;
+package tk.zhangh.java.collection.model;
 
 /**
  * Created by ZhangHao on 2016/4/8.

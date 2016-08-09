@@ -1,7 +1,7 @@
-package tk.zhangh.java.datastructure;
+package tk.zhangh.java.collection;
 
-import tk.zhangh.java.model.Employee;
-import tk.zhangh.java.model.Item;
+import tk.zhangh.java.collection.model.Employee;
+import tk.zhangh.java.collection.model.Item;
 
 import java.util.Comparator;
 import java.util.TreeMap;

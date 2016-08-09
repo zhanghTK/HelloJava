@@ -1,4 +1,4 @@
-package tk.zhangh.java.datastructure;
+package tk.zhangh.java.collection;
 
 import java.util.LinkedList;
 import java.util.List;

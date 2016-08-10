@@ -1,4 +1,4 @@
-package tk.zhangh.java.jvm.load;
+package tk.zhangh.java.jvm.load.Initialization;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -18,7 +18,7 @@ public class InitializationApp {
     public void initialization2() {
         System.out.println("对类进行反射调用的时候，如果类没有进行过初始化，则需要先触发其初始化");
         try {
-            Class.forName("tk.zhangh.java.jvm.load.SuperClass");
+            Class.forName("tk.zhangh.java.jvm.load.Initialization.SuperClass");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

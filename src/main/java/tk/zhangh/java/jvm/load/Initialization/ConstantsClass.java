@@ -1,4 +1,4 @@
-package tk.zhangh.java.jvm.load;
+package tk.zhangh.java.jvm.load.Initialization;
 
 /**
  * Created by ZhangHao on 2016/8/10.

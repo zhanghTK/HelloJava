@@ -1,4 +1,4 @@
-package tk.zhangh.java.jvm.load;
+package tk.zhangh.java.jvm.load.Initialization;
 
 /**
  * 静态初始化实例

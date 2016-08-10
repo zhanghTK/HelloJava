@@ -1,4 +1,4 @@
-package tk.zhangh.java.jvm.load;
+package tk.zhangh.java.jvm.load.Initialization;
 
 import org.junit.Test;
 

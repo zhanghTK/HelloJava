@@ -8,7 +8,7 @@ import java.io.InputStream;
  */
 public class DiffClassLoaderTest {
     public static void main(String[] args) throws Exception{
-        ClassLoader loader1 = new ClassLoader() {
+        ClassLoader loader = new ClassLoader() {
             @Override
             public Class<?> loadClass(String name) throws ClassNotFoundException {
                 try {
@@ -26,18 +26,18 @@ public class DiffClassLoaderTest {
             }
         };
 
-        Object obj = new DiffClassLoaderTest();
-        Object myObj = loader1.loadClass(DiffClassLoaderTest.class.getName()).newInstance();
+        Object myObj = loader.loadClass(Foo.class.getName()).newInstance();
+        Object obj = new Foo();
 
         System.out.println("\n-------------------默认类加载器-------------------------");
         System.out.println(obj.getClass());
-        System.out.print("instance of DiffClassLoaderTest: ");
-        System.out.println(obj instanceof DiffClassLoaderTest);
+        System.out.print("instance of Foo: ");
+        System.out.println(obj instanceof Foo);
 
         System.out.println("\n--------------------自定义------------------------");
         System.out.println(myObj.getClass());
-        System.out.print("instance of DiffClassLoaderTest: ");
-        System.out.println(myObj instanceof DiffClassLoaderTest);
+        System.out.print("instance of Foo: ");
+        System.out.println(myObj instanceof Foo);
 
     }
 }

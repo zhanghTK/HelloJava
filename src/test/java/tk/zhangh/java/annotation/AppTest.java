@@ -8,7 +8,7 @@ import tk.zhangh.java.annotation.entity.Student;
 import java.util.List;
 
 /**
- * ²âÊÔ¸ù¾İÊµÌåÀà×¢½âÉú³ÉSQLÓï¾ä
+ * æµ‹è¯•æ ¹æ®å®ä½“ç±»æ³¨è§£ç”ŸæˆSQLè¯­å¥
  * Created by ZhangHao on 2016/8/8.
  */
 public class AppTest {
@@ -16,7 +16,7 @@ public class AppTest {
     App app;
 
     /**
-     * ³õÊ¼»¯
+     * åˆå§‹åŒ–
      */
     @Before
     public void InitApp() {
@@ -24,7 +24,7 @@ public class AppTest {
     }
 
     /**
-     * ²âÊÔ¼ÓÔØÀà
+     * æµ‹è¯•åŠ è½½ç±»
      * @throws Exception
      */
     @Test
@@ -34,7 +34,7 @@ public class AppTest {
     }
 
     /**
-     * ²âÊÔ»ñÈ¡±íÃû
+     * æµ‹è¯•è·å–è¡¨å
      * @throws Exception
      */
     @Test
@@ -44,7 +44,7 @@ public class AppTest {
     }
 
     /**
-     * ²âÊÔ»ñÈ¡ÁĞĞÅÏ¢
+     * æµ‹è¯•è·å–åˆ—ä¿¡æ¯
      * @throws Exception
      */
     @Test
@@ -57,7 +57,7 @@ public class AppTest {
     }
 
     /**
-     * ²âÊÔ´´½¨SQL
+     * æµ‹è¯•åˆ›å»ºSQL
      * @throws Exception
      */
     @Test

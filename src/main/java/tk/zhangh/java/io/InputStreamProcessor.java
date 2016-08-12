@@ -8,5 +8,5 @@ import java.io.InputStream;
  * Created by ZhangHao on 2016/7/27.
  */
 public interface InputStreamProcessor {
-    void process(InputStream input) throws IOException;
+    Object process(InputStream inStream) throws IOException;
 }

@@ -9,14 +9,15 @@ import java.io.*;
  * Created by ZhangHao on 2016/8/9.
  */
 public class InputStreamProcessingTemplate {
-    public static void process(String fileName, InputStreamProcessor processor){
+    public static Object process(String fileName, InputStreamProcessor processor){
         IOException processException = null;
         InputStream input = null;
         try{
             input = new FileInputStream(fileName);
-            processor.process(input);
+            return processor.process(input);
         } catch (IOException e) {
             processException = e;
+            return null;
         } finally {
             if(input != null){
                 try {

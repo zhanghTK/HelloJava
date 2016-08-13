@@ -29,15 +29,15 @@ public class DiffClassLoaderTest {
         Object myObj = loader.loadClass(Foo.class.getName()).newInstance();
         Object obj = new Foo();
 
-        System.out.println("\n-------------------默认类加载器-------------------------");
-        System.out.println(obj.getClass());
-        System.out.print("instance of Foo: ");
-        System.out.println(obj instanceof Foo);
-
         System.out.println("\n--------------------自定义------------------------");
         System.out.println(myObj.getClass());
-        System.out.print("instance of Foo: ");
-        System.out.println(myObj instanceof Foo);
+        System.out.println("加载器：" + myObj.getClass().getClassLoader().getClass().getName());
+        System.out.println("myObj instanceof Foo " + (myObj instanceof Foo));
+
+        System.out.println("\n-------------------默认类加载器-------------------------");
+        System.out.println(obj.getClass());
+        System.out.println("加载器：" + obj.getClass().getClassLoader().getClass().getName());
+        System.out.println("obj instanceof Foo " + (obj instanceof Foo));
 
     }
 }

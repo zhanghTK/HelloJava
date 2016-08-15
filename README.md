@@ -1,3 +1,3 @@
 # HelloJava
 
-## a library by ZhangHao
+## Learn Java

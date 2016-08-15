@@ -1,7 +1,7 @@
 package tk.zhangh.java.jvm.load;
 
-import tk.zhangh.java.io.InputStreamProcessingTemplate;
-import tk.zhangh.java.io.InputStreamProcessor;
+import tk.zhangh.java.io.stream.InputStreamProcessingTemplate;
+import tk.zhangh.java.io.stream.InputStreamProcessor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package tk.zhangh.java.io;
+package tk.zhangh.java.io.stream;
 
 import org.junit.Test;
 

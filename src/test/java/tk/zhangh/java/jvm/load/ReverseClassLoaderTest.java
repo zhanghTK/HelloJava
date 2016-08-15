@@ -2,7 +2,7 @@ package tk.zhangh.java.jvm.load;
 
 import org.junit.Assert;
 import org.junit.Test;
-import tk.zhangh.java.io.FileEncryptUtil;
+import tk.zhangh.java.io.File.FileEncryptUtil;
 
 import java.io.File;
 

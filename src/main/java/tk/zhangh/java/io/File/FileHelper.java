@@ -1,26 +1,33 @@
 package tk.zhangh.java.io.File;
 
-import java.io.File;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
 
 /**
  * 文件帮助类
  * Created by ZhangHao on 2016/4/19.
  */
 public class FileHelper {
+    private static Logger logger = LoggerFactory.getLogger(FileHelper.class);
     /**
      * 打印某路径下所有文件树结构
-     * @param file
-     * @param level
+     * @param file 目录文件
      */
-    public static void printFile(java.io.File file, int level){
+    public static void printFileTree(File file){
+        printFileTreeLevel(file, 0);
+    }
+
+    private static void printFileTreeLevel(File file, int level) {
         for (int i = 0; i < level-1; i++) {
             System.out.print("\t");
         }
-        System.out.println("├"+file.getName());
+        System.out.println("├" + file.getName());
         if (file.isDirectory()){
             java.io.File[] files = file.listFiles();
             for (java.io.File fileTmp : files){
-                printFile(fileTmp, level + 1);
+                printFileTreeLevel(fileTmp, level + 1);
             }
         }
     }
@@ -41,5 +48,89 @@ public class FileHelper {
             }
         }
         return dir.delete();
+    }
+
+    /**
+     * 获取字符文件内容
+     * @param file 字符文件
+     * @param charsetName 字符集
+     * @return 文件内容
+     * @throws IOException IO异常
+     */
+    public static String getFileContent(File file, String charsetName) throws IOException{
+        checkFile(file);
+        StringBuffer buffer = new StringBuffer();
+        String line;
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName))) {
+            while (null != (line = reader.readLine())) {
+                buffer.append(line).append("\n");
+            }
+        }
+        return buffer.substring(0, buffer.length() - 1);
+    }
+
+    /**
+     * 复制文件
+     * @param src 原文件
+     * @param dest 复制文件
+     * @throws IOException IO
+     */
+    public static void copyFile(final File src, final File dest) throws IOException {
+        checkFile(src);
+        createFileIfNotExists(dest);
+        try(InputStream inStream = new BufferedInputStream(new FileInputStream(src));
+            OutputStream outStream = new BufferedOutputStream(new FileOutputStream(dest))) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while (-1 != (length = inStream.read(buffer))) {
+                outStream.write(buffer, 0, length);
+            }
+            outStream.flush();
+        } catch (FileNotFoundException e) {
+            throw e;
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+
+    /**
+     * 复制文件夹
+     * @param src
+     * @param dest
+     * @return
+     */
+    public static boolean copyDir(File src, File dest) {
+        // todo 复制文件夹
+        return false;
+    }
+
+    /**
+     * 检查文件，非法文件则抛出运行期异常
+     * @param file 文件
+     */
+    public static void checkFile(File file) {
+        if (!file.isFile()) {
+            logger.error("{} is not a file", file);
+            throw new RuntimeException(file + "is not a file");
+        }
+    }
+
+    /**
+     * 如果不存在则创建文件
+     * @param file 文件
+     * @throws IOException IO 异常
+     */
+    public static void createFileIfNotExists(File file) throws IOException {
+        if (!file.exists()) {
+            try {
+                if (false == file.createNewFile()) {
+                    logger.error("{} create fail", file);
+                    throw new RuntimeException("create file error");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw e;
+            }
+        }
     }
 }

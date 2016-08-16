@@ -9,11 +9,11 @@ import java.io.*;
  * Created by ZhangHao on 2016/8/9.
  */
 public class InputStreamProcessingTemplate {
-    public static Object process(String fileName, InputStreamProcessor processor){
+    public static Object process(File file, InputStreamProcessor processor){
         IOException processException = null;
         InputStream input = null;
         try{
-            input = new FileInputStream(fileName);
+            input = new FileInputStream(file);
             return processor.process(input);
         } catch (IOException e) {
             processException = e;
@@ -24,15 +24,19 @@ public class InputStreamProcessingTemplate {
                     input.close();
                 } catch(IOException e){
                     if(processException != null){
-                        throw new IOExceptionWrapping(processException, "Error message..." + fileName);
+                        throw new IOExceptionWrapping(processException, "Error message..." + file);
                     } else {
-                        throw new IOExceptionWrapping(e, "Error closing InputStream for file " + fileName);
+                        throw new IOExceptionWrapping(e, "Error closing InputStream for file " + file);
                     }
                 }
             }
             if(processException != null){
-                throw new IOExceptionWrapping(processException, "Error processing InputStream for file " + fileName);
+                throw new IOExceptionWrapping(processException, "Error processing InputStream for file " + file);
             }
         }
+    }
+
+    public static Object process(String filePth, InputStreamProcessor processor){
+        return process(new File(filePth), processor);
     }
 }

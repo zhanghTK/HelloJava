@@ -95,13 +95,33 @@ public class FileHelper {
 
     /**
      * 复制文件夹
-     * @param src
-     * @param dest
-     * @return
+     * @param src 原文件夹
+     * @param dest 目标文件夹
      */
-    public static boolean copyDir(File src, File dest) {
-        // todo 复制文件夹
-        return false;
+    public static void copyDir(File src, File dest) throws IOException{
+        if (!src.isDirectory() || ! dest.isDirectory()) {
+            logger.error("{} or {} not a directory", src, dest);
+            throw new RuntimeException("file must be a directory");
+        }
+        recursionCopyDir(src, dest);
+    }
+
+    private static void recursionCopyDir(File src, File dest)throws IOException{
+        if (src.isFile()) {
+            try {
+                copyFile(src, dest);
+            } catch (IOException e) {
+                throw e;
+            }
+        } else if (src.isDirectory()) {
+            if (dest.getAbsolutePath().contains(src.getAbsolutePath())) {
+                throw new RuntimeException("parent directory can't contains child directory");
+            }
+            dest.mkdirs();
+            for (File file : src.listFiles()) {
+                recursionCopyDir(file, new File(dest, file.getName()));
+            }
+        }
     }
 
     /**

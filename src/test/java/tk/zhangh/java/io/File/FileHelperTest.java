@@ -58,7 +58,13 @@ public class FileHelperTest {
 
     @Test
     public void testCopyDir() throws Exception {
-        // todo 测试复制文件夹
+        File src = new File(System.getProperty("user.dir"));
+        String destPath = src.getParentFile().toString();
+        destPath += File.separator + "test";
+        File dest = new File(destPath);
+        dest.mkdir();
+        FileHelper.copyDir(src, dest);
+        FileHelper.deleteDir(dest);
     }
 
     @Test

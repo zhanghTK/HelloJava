@@ -12,7 +12,7 @@ import java.util.Date;
  * 文件处理流的使用
  * Created by ZhangHao on 2016/8/15.
  */
-public class ProcessStreamTest {
+public class BufferedIOTest {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private String srcPath = System.getProperty("user.dir") + "/README.md";
     private String destPath = System.getProperty("user.dir") + "/" +String.valueOf(new Date().getTime());

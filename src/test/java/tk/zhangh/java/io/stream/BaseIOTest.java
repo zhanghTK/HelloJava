@@ -12,7 +12,7 @@ import java.util.Date;
  * 基本输入输出流测试
  * Created by ZhangHao on 2016/8/15.
  */
-public class BaseStreamTest {
+public class BaseIOTest {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Test

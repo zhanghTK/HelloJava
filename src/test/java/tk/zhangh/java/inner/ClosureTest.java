@@ -18,7 +18,7 @@ package tk.zhangh.java.inner;
      console.log(add20(5));
 
  */
-public class TestClosure {
+public class ClosureTest {
     public static void main(String[] args) {
         IAdder myInterface = getAdder(10);
         System.out.println(myInterface.add(1));
@@ -28,12 +28,15 @@ public class TestClosure {
     }
 
     public static IAdder getAdder(final int base) {
-        IAdder myInterface = new IAdder() {
+        return new IAdder() {
             @Override
             public int add(int x) {
                 return base + x;
             }
         };
-        return myInterface;
     }
+}
+
+interface IAdder {
+    int add(int x);
 }

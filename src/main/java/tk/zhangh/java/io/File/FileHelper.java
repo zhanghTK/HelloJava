@@ -1,4 +1,4 @@
-package tk.zhangh.java.io.File;
+package tk.zhangh.java.io.file;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package tk.zhangh.java.io.File;
+package tk.zhangh.java.io.file;
 
 import org.junit.Test;
 import tk.zhangh.java.jvm.load.ReverseClassLoaderTest;

@@ -60,6 +60,7 @@ public class DelayItem<T> implements Delayed {
      */
     @Override
     public long getDelay(TimeUnit unit) {
+        // 注意:DelayQueue内部比较使用的是纳秒为单位,使用毫秒可能一起程序性能下降
         return unit.convert(time - now(), TimeUnit.NANOSECONDS);
     }
 

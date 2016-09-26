@@ -21,6 +21,9 @@ public class RunnableCallableTest {
         futureTaskRunnableDemo();
     }
 
+    /**
+     * 求斐波那契数
+     */
     static int fibc(int num) {
         return num <= 1 ? num : fibc(num-1) + fibc(num-2);
     }

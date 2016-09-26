@@ -14,7 +14,7 @@ public class ThreadTest {
      * 中断基本用法
      */
     @Test
-    public void test() throws Exception {
+    public void testInterrupt() throws Exception {
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -136,5 +136,15 @@ public class ThreadTest {
         };
         thread.start();
         thread.join();
+    }
+
+    @Test
+    public void test() {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                System.out.println("bye");
+            }
+        });
     }
 }

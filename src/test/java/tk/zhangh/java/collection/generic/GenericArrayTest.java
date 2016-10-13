@@ -60,7 +60,7 @@ public class GenericArrayTest {
     }
 
     /**
-     * 使用泛型的泛型的reduce函数
+     * 使用泛型的reduce函数
      * 将同步的List拷贝，使用拷贝的List
      * @param list 一个同步列表
      * @param function 函数接口，处理list
@@ -79,7 +79,28 @@ public class GenericArrayTest {
         return result;
     }
 
-    public static void main(String[] args) {
+    /**
+     * 使用通配符泛型的reduce函数
+     * 将同步的List拷贝，使用拷贝的List
+     * 可以使用更加通用的Function接口
+     * @param list 一个同步列表
+     * @param function 函数接口，处理list
+     * @param initVal 初始值
+     * @return reduce列表后的值
+     */
+    static <E> E reduce4(List<? extends E> list, Function2<E> function, E initVal) {
+        List<E> snapshot;
+        synchronized (list) {
+            snapshot = new ArrayList<>(list);
+        }
+        E result = initVal;
+        for (E e : snapshot) {
+            result = function.apply(result, e);
+        }
+        return result;
+    }
+
+    static void testGenericTest() {
         List<String> list = new ArrayList<>();
         list.add("Hello");
         list.add("World");
@@ -90,5 +111,18 @@ public class GenericArrayTest {
             }
         }, "");
         System.out.println(result);
+    }
+
+    public static void main(String[] args) {
+        Function2<Number> function = new Function2<Number>() {
+            @Override
+            public Number apply(Number result, Number val) {
+                return result.doubleValue() + val.doubleValue();
+            }
+        };
+        List<Number> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        System.out.println(reduce4(list, function, 0));
     }
 }

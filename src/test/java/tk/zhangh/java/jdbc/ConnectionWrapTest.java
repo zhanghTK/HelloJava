@@ -12,29 +12,30 @@ import java.util.Random;
 
 /**
  * Created by ZhangHao on 2016/3/24.
- * jdbc helper 测试
+ *
+ * connectionWrap测试
  */
-public class JdbcUtilTest {
-    private JdbcHelper jdbcHelper;
+public class ConnectionWrapTest {
+    private ConnectionWrap connectionWrap;
 
     @Before
-    public void initJdbcUtil(){
-        jdbcHelper = new JdbcHelper(false);
+    public void initJdbcUtil() {
+        connectionWrap = new ConnectionWrap(false);
     }
 
     @Test
     public void testUpdate() throws Exception {
         List params = new ArrayList(){{add("root"); add("1");}};
-        boolean result = jdbcHelper.update("update user set name = ? where id = ?", params);
-        jdbcHelper.releaseResources();
+        boolean result = connectionWrap.update("update user set name = ? where id = ?", params);
+        connectionWrap.releaseResources();
         Assert.assertEquals(result, true);
     }
 
     @Test
     public void testFind() throws Exception {
         List params = new ArrayList(){{add("1");}};
-        List<Map<String, Object>> table = jdbcHelper.find("select * from user where id =?", params);
-        jdbcHelper.releaseResources();
+        List<Map<String, Object>> table = connectionWrap.find("select * from user where id =?", params);
+        connectionWrap.releaseResources();
         for (int i = 0; i < table.size(); i++) {
             Map<String, Object> row = table.get(i);
             for (Map.Entry<String, Object> entry: row.entrySet()){
@@ -47,8 +48,8 @@ public class JdbcUtilTest {
     @Test
     public void testFindByType() throws Exception{
         List params = new ArrayList(){{add("1");}};
-        List<User> table = jdbcHelper.find("select * from user where id =?", params, User.class);
-        jdbcHelper.releaseResources();
+        List<User> table = connectionWrap.find("select * from user where id =?", params, User.class);
+        connectionWrap.releaseResources();
         for (int i = 0; i < table.size(); i++) {
             User user = table.get(i);
             System.out.println(user.getId() + "\t" + user.getName());
@@ -59,19 +60,19 @@ public class JdbcUtilTest {
     @Test
     public void testInsert() throws Exception {
         List params = new ArrayList(){{add(new Random().nextInt(1000)); add("user");}};
-        boolean result = jdbcHelper.update("INSERT INTO `user` VALUES(? ,?)", params);
-        jdbcHelper.releaseResources();
+        boolean result = connectionWrap.update("INSERT INTO `user` VALUES(? ,?)", params);
+        connectionWrap.releaseResources();
         Assert.assertEquals(result, true);
     }
 
     @Test
     public void testDelete() throws Exception {
         List params1 = new ArrayList(){{add("2"); add("1111");}};
-        jdbcHelper.update("INSERT INTO `user` VALUES(? ,?)", params1);
-        jdbcHelper.getConnection().commit();
+        connectionWrap.update("INSERT INTO `user` VALUES(? ,?)", params1);
+        connectionWrap.getConnection().commit();
         List params = new ArrayList(){{add("2");}};
-        boolean result = jdbcHelper.update("DELETE FROM user WHERE id = ?", params);
-        jdbcHelper.releaseResources();
+        boolean result = connectionWrap.update("DELETE FROM user WHERE id = ?", params);
+        connectionWrap.releaseResources();
         Assert.assertEquals(result, true);
     }
 }

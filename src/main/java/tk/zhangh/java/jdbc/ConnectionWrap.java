@@ -1,17 +1,16 @@
 package tk.zhangh.java.jdbc;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by ZhangHao on 2016/3/24.
- * JDBC工具类
+ * Connection包装类
  */
-public class JdbcHelper {
+public class ConnectionWrap {
     private static String USERNAME;
     private static String PASSWORD;
     private static String CLASS_DRIVER;
@@ -21,11 +20,11 @@ public class JdbcHelper {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    public JdbcHelper() {
+    public ConnectionWrap() {
         autoCommit = true;
     }
 
-    public JdbcHelper(boolean autoCommit){
+    public ConnectionWrap(boolean autoCommit){
         this.autoCommit = autoCommit;
     }
 
@@ -34,14 +33,26 @@ public class JdbcHelper {
      * 加载数据库数据库驱动
      */
     static {
+        InputStream inStream = null;
         try {
-            USERNAME = "root";
-            PASSWORD = "123456";
-            CLASS_DRIVER = "com.mysql.jdbc.Driver";
-            URL = "jdbc:mysql://localhost:3306/spring?useUnicode=true&characterEncoding=UTF-8";
+            inStream = ConnectionWrap.class.getResourceAsStream("/jdbc.properties");
+            Properties properties = new Properties();
+            properties.load(inStream);
+            USERNAME = properties.getProperty("username");
+            PASSWORD = properties.getProperty("password");
+            CLASS_DRIVER = properties.getProperty("classDriver");
+            URL = properties.getProperty("url");
             Class.forName(CLASS_DRIVER);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (inStream != null) {
+                try {
+                    inStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -52,20 +63,6 @@ public class JdbcHelper {
         }
         return connection;
     }
-
-    //    /**
-//     * 获得数据库连接
-//     * @return 数据库连接
-//     */
-//    private Connection getConnection(){
-//        try {
-//            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-//            connection.setAutoCommit(autoCommit);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return connection;
-//    }
 
     /**
      * 初始化PreparedStatement
@@ -118,7 +115,7 @@ public class JdbcHelper {
         int result = -1;
         try {
             result = initPreparedStatement(sql, params).executeUpdate();
-            if (!autoCommit) {
+            if (autoCommit) {
                 getConnection().commit();
             }
         } catch (SQLException e) {

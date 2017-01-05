@@ -34,7 +34,7 @@ public class LogAspect {
             logger.info("{} has occurred exception:", throwable);
             throw throwable;
         }
-        logger.info("{} has finished,result is {}", signature, object);
+        logger.info("{} has finished,result is\n{}", signature, object);
         return object;
     }
 }

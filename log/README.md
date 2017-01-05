@@ -72,3 +72,27 @@ Appender配置：
 符合切面中定义的切点表达式 `@Pointcut("execution(* tk.zhangh.java..*.*(..))")`
 
 在测试用例中调用 `BusinessService` 类的方法检查日志是否正常记录
+
+## 第三方使用
+
+1. 在第三方pom中引入依赖
+
+   ```xml
+   <dependency>
+     <groupId>tk.zhangh.java</groupId>
+     <artifactId>log</artifactId>
+     <version>1.0-SNAPSHOT</version>
+   </dependency>
+   ```
+
+2. 添加log切面配置
+
+   ```java
+   @RunWith(SpringJUnit4ClassRunner.class)
+   @ContextConfiguration(classes = {ReflectionTestConfig.class, LogAopConf.class})
+   public class InstanceInfoServiceTest {
+   	// ...
+   }
+   ```
+
+   ​

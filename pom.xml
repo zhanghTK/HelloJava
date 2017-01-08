@@ -12,6 +12,7 @@
         <module>entity</module>
         <module>reflection</module>
         <module>log</module>
+        <module>office</module>
     </modules>
 
     <properties>

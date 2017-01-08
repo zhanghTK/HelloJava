@@ -18,4 +18,14 @@ public class ReflectionTestConfig {
     public ClassAnalyzer classAnalyzer() {
         return new ClassAnalyzer();
     }
+
+    @Bean
+    public ReflectionHelper reflectionHelper() {
+        return new ReflectionHelper();
+    }
+
+    @Bean
+    public MethodTimer methodTimer() {
+        return new MethodTimer();
+    }
 }

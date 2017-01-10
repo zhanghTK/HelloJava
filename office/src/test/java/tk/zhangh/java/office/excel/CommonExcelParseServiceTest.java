@@ -31,7 +31,7 @@ public class CommonExcelParseServiceTest {
     ExcelParseService commonWithDateFormat;
 
     @Test
-    public void test_common_parse_excel() throws Exception {
+    public void test_parse_excel() throws Exception {
         File file = new File("src/test/resources/common.xlsx");
         List<Map<String, String>> excel = excelParseService.convertToList(file, 0);
         Assert.assertEquals(9, excel.size());
@@ -39,7 +39,7 @@ public class CommonExcelParseServiceTest {
     }
 
     @Test
-    public void test_common_parse_excel_by_inStream() throws Exception {
+    public void test_parse_excel_by_inStream() throws Exception {
         InputStream inStream = this.getClass().getResourceAsStream("/common.xlsx");
         List<Map<String, String>> excel = excelParseService.convertToList(inStream, "common.xlsx", 0);
         Assert.assertEquals(9, excel.size());
@@ -47,10 +47,19 @@ public class CommonExcelParseServiceTest {
     }
 
     @Test
-    public void test_common_date_parse_excel_by() throws Exception {
+    public void test_parse_excel_with_special_date() throws Exception {
         File file = new File("src/test/resources/common.xlsx");
         List<Map<String, String>> excel = commonWithDateFormat.convertToList(file, 1);
         Assert.assertEquals(9, excel.size());
         Assert.assertEquals("16/9/09", excel.get(excel.size() - 1).get("日期"));
+    }
+
+    @Test
+    public void test_parse_empty_field() throws Exception {
+        File file = new File("src/test/resources/common.xlsx");
+        List<Map<String, String>> excel = commonWithDateFormat.convertToList(file, 0);
+        Assert.assertEquals(9, excel.size());
+        Assert.assertEquals("16/9/09", excel.get(excel.size() - 1).get("日期"));
+        Assert.assertEquals("", excel.get(1).get("第九列"));
     }
 }

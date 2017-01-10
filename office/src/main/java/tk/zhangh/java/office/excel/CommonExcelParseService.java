@@ -104,6 +104,9 @@ public class CommonExcelParseService implements ExcelParseService {
             if (cellValue != null) {
                 rowMapping.put(head, getCellValue(cell, cellValue).trim());
             }
+            if ("".equals(cell.toString())) {
+                rowMapping.put(head, "");
+            }
         }
         return rowMapping;
     }

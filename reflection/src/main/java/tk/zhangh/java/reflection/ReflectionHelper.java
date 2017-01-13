@@ -1,7 +1,11 @@
 package tk.zhangh.java.reflection;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 反射帮助类
@@ -9,6 +13,93 @@ import java.lang.reflect.Method;
  * Created by ZhangHao on 2017/1/8.
  */
 public class ReflectionHelper {
+    private Logger logger = LoggerFactory.getLogger(ReflectionHelper.class);
+
+    private Field field0(Class clazz, String name) {
+        try {
+            return accessible(clazz.getField(name));  // 获取public字段
+        } catch (NoSuchFieldException e) {
+            while (clazz != null) {
+                try {
+                    return accessible(clazz.getDeclaredField(name));
+                } catch (NoSuchFieldException ignored) {
+                }
+                clazz = clazz.getSuperclass();
+            }
+            throw new ReflectException(e);
+        }
+    }
+
+    public Map<String, Object> fields(Class clazz) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        while (clazz != null) {
+            for (Field field : clazz.getDeclaredFields()) {
+                if (Modifier.isStatic(field.getModifiers())) {
+                    String name = field.getName();
+                    if (!result.containsKey(name)) {
+                        try {
+                            result.put(name, field0(clazz, name).get(null));
+                        } catch (IllegalAccessException e) {
+                            throw new ReflectException(e);
+                        }
+                    }
+                }
+            }
+            clazz = clazz.getSuperclass();
+        }
+        return result;
+    }
+
+    public Map<String, Object> fields(Object instance) {
+        Class<?> clazz = instance.getClass();
+        Map<String, Object> result = new LinkedHashMap<>();
+        while (clazz != null) {
+            for (Field field : clazz.getDeclaredFields()) {
+                String name = field.getName();
+                if (!result.containsKey(name)) {
+                    try {
+                        result.put(name, field0(clazz, name).get(instance));
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            clazz = clazz.getSuperclass();
+        }
+        return result;
+    }
+
+
+    public <T extends Member> boolean isPublic(T accessible) {
+        return Modifier.isPublic(accessible.getModifiers()) && Modifier.isPublic(accessible.getDeclaringClass().getModifiers());
+    }
+
+    public <T extends AccessibleObject> T accessible(T accessible) {
+        if (accessible == null) {
+            return null;
+        }
+        if (accessible instanceof Member) {
+            Member member = (Member) accessible;
+            if (isPublic(member)) {
+                return accessible;
+            }
+        }
+        if (!accessible.isAccessible()) {
+            accessible.setAccessible(true);
+        }
+        return accessible;
+    }
+
+    public Class<?>[] types(Object... values) {
+        if (values == null) {
+            return new Class[0];
+        }
+        Class<?>[] result = new Class[values.length];
+        for (int i = 0; i < values.length; i++) {
+            result[i] = values[i] == null ? null : values[i].getClass();
+        }
+        return result;
+    }
 
     /**
      * 调用类的空构造器，获得类对象的实例

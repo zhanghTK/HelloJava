@@ -36,7 +36,7 @@ public class MethodTimer {
      */
     public long getMethodDuration(Method method, Object... args) {
         Class clazz = method.getDeclaringClass();
-        Object instance = reflectionHelper.createClassInstance(clazz);
+        Object instance = reflectionHelper.newInstance(clazz);
         return countInvokeTime(method, instance, args);
     }
 
@@ -48,7 +48,7 @@ public class MethodTimer {
     private Map<String, Long> countMethodsDuration(Class clazz) {
         Map<String, Long> methodsTable = new HashMap<>();
         Method[] methods = clazz.getDeclaredMethods();
-        Object object = reflectionHelper.createClassInstance(clazz);
+        Object object = reflectionHelper.newInstance(clazz);
         Arrays.asList(methods).stream()
                 .filter(method -> method.isAnnotationPresent(Timer.class))
                 .forEach(timeredMethod ->
@@ -65,7 +65,7 @@ public class MethodTimer {
      */
     private long countInvokeTime(Method method, Object instance, Object... args) {
         long start = System.currentTimeMillis();
-        reflectionHelper.invokeMethod(instance, method, args);
+        reflectionHelper.call(instance, method, args);
         long end = System.currentTimeMillis();
         return end - start;
     }

@@ -16,6 +16,17 @@ public class ReflectionHelper {
     private Logger logger = LoggerFactory.getLogger(ReflectionHelper.class);
 
     /**
+     * 使用当前类加载器加载一个类
+     */
+    public Class<?> forName(String name) {
+        try {
+            return Class.forName(name);
+        } catch (ClassNotFoundException e) {
+            throw new ReflectException(e);
+        }
+    }
+
+    /**
      * 使用指定加载器根据全类名加载一个类
      */
     public Class<?> forName(String name, ClassLoader classLoader) {
@@ -26,16 +37,6 @@ public class ReflectionHelper {
         }
     }
 
-    /**
-     * 使用当前类加载器加载一个类
-     */
-    public Class<?> forName(String name) {
-        try {
-            return Class.forName(name);
-        } catch (ClassNotFoundException e) {
-            throw new ReflectException(e);
-        }
-    }
 
     /**
      * 调用类的空构造器，获得类对象的实例
@@ -96,6 +97,7 @@ public class ReflectionHelper {
 
     /**
      * 获取类的静态字段以及对应值
+     * 包括继承体系中的父类，各个访问权限的字段
      */
     public Map<String, Object> fields(Class clazz) {
         Map<String, Object> result = new LinkedHashMap<>();
@@ -118,8 +120,8 @@ public class ReflectionHelper {
     }
 
     /**
-     * 获取一个类的所有子墩以及对应值
-     * 包括静态字段，对象字段
+     * 获取一个类的所有字段以及对应值
+     * 包括继承体系中的父类，各个访问权限的字段，静态字段以及对象字段
      */
     public Map<String, Object> fields(Object instance) {
         Class<?> clazz = instance.getClass();
@@ -166,7 +168,7 @@ public class ReflectionHelper {
     }
 
     /**
-     * 根据指定签名的方法
+     * 执行指定签名的方法
      */
     public Object call(Object instance, String methodName, Object... args) {
         Class<?>[] classes = types(args);
@@ -187,7 +189,7 @@ public class ReflectionHelper {
     /**
      * 根据方法签名准确匹配一个方法
      */
-    public Method exactMethod(Class<?> clazz, String name, Class<?>[] classes) throws NoSuchMethodException {
+    public Method exactMethod(Class<?> clazz, String name, Class<?>... classes) throws NoSuchMethodException {
         try {
             return clazz.getMethod(name, classes);
         } catch (NoSuchMethodException e) {
@@ -204,18 +206,17 @@ public class ReflectionHelper {
     }
 
     /**
-     * 根据方法签名准确匹配一个方法
+     * 根据方法签名匹配一个相似方法
      */
-    public Method similarMethod(Class clazz, String name, Class<?>[] types) throws NoSuchMethodException {
+    public Method similarMethod(Class<?> clazz, String name, Class<?>... classes) throws NoSuchMethodException {
         for (Method method : clazz.getMethods()) {
-            if (isSimilarSignature(method, name, types)) {
+            if (isSimilarSignature(method, name, classes)) {
                 return method;
             }
         }
-
         while (clazz != null) {
             for (Method method : clazz.getDeclaredMethods()) {
-                if (isSimilarSignature(method, name, types)) {
+                if (isSimilarSignature(method, name, classes)) {
                     return method;
                 }
             }
@@ -240,6 +241,7 @@ public class ReflectionHelper {
 
     /**
      * 获取方法名
+     * 类群路径.方法名
      */
     public String getMethodName(Method method) {
         return method.getDeclaringClass().getName() + "." + method.getName();
@@ -248,7 +250,7 @@ public class ReflectionHelper {
     /**
      * 判断方法签名是否匹配
      */
-    public boolean isSimilarSignature(Method possiblyMatchingMethod, String desiredMethodName, Class<?>[] desiredParamTypes) {
+    public boolean isSimilarSignature(Method possiblyMatchingMethod, String desiredMethodName, Class<?>... desiredParamTypes) {
         return possiblyMatchingMethod.getName().equals(desiredMethodName) && match(possiblyMatchingMethod.getParameterTypes(), desiredParamTypes);
     }
 

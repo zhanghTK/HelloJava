@@ -1,6 +1,6 @@
-package tk.zhangh.java.lifecycle;
+package tk.zhangh.java.x.lifecycle;
 
-import tk.zhangh.java.exception.LifecycleException;
+import java.io.IOException;
 
 /**
  * 生命周期默认实现
@@ -29,7 +29,7 @@ public class DefaultLifeCycle extends AbstractLifeCycle{
     }
 
     @Override
-    protected void destroy0() throws LifecycleException {
+    protected void destroy0() throws LifecycleException, IOException {
 
     }
 }

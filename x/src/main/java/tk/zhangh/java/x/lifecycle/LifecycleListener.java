@@ -1,4 +1,4 @@
-package tk.zhangh.java.lifecycle;
+package tk.zhangh.java.x.lifecycle;
 
 /**
  * 生命周期监听器

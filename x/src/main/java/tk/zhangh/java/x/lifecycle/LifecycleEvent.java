@@ -1,4 +1,4 @@
-package tk.zhangh.java.lifecycle;
+package tk.zhangh.java.x.lifecycle;
 
 /**
  * 生命周期事件
@@ -11,9 +11,6 @@ public class LifecycleEvent {
         this.state = state;
     }
 
-    /**
-     * @return the state
-     */
     public LifecycleState getState() {
         return state;
     }

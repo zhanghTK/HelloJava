@@ -13,6 +13,10 @@
         <module>reflection</module>
         <module>log</module>
         <module>office</module>
+        <module>practice</module>
+        <module>io</module>
+        <module>x</module>
+        <module>toolkit</module>
     </modules>
 
     <properties>

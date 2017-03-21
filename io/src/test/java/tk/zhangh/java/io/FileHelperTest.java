@@ -79,15 +79,35 @@ public class FileHelperTest {
         Assert.assertFalse(dest.exists());
     }
 
+    @Test
+    public void test_reverse() throws Exception {
+        File src = new File(System.getProperty("user.dir") + File.separator + "README.md");
+        File dest = new File(System.getProperty("user.dir") + File.separator + "test");
+        fileHelper.reverse(src, dest);
+        Assert.assertFalse(fileHelper.getFileContent(dest, "utf-8").toUpperCase().contains("IO"));
+        File tmpFile = new File(System.getProperty("user.dir") + File.separator + "temp");
+        fileHelper.reverse(dest, tmpFile);
+        Assert.assertTrue(fileHelper.getFileContent(tmpFile, "utf-8").contains("IO"));
+    }
+
     @After
     public void destroy() {
-        File file = new File(System.getProperty("user.dir") + File.separator + "test");
+        deleteTestFile("test");
+        deleteTestFile("temp");
+        deleteTestDir("test-dir");
+    }
+
+    private void deleteTestFile(String name) {
+        File file = new File(System.getProperty("user.dir") + File.separator + name);
         if (file.exists()) {
             if (!file.delete()) {
-                throw new RuntimeException("删除临时文件test失败！");
+                throw new RuntimeException("删除临时文件" + name + "失败！");
             }
         }
-        File dest = new File(System.getProperty("user.dir") + File.separator + "test-dir");
+    }
+
+    private void deleteTestDir(String name) {
+        File dest = new File(System.getProperty("user.dir") + File.separator + name);
         fileHelper.deleteDir(dest);
         Assert.assertFalse(dest.exists());
     }

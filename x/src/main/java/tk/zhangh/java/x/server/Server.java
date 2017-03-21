@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tk.zhangh.java.x.lifecycle.DefaultLifeCycle;
 import tk.zhangh.java.x.server.exception.ServerInitException;
+import tk.zhangh.toolkit.IoUtils;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -55,7 +56,7 @@ public class Server extends DefaultLifeCycle {
     @Override
     protected void destroy0() {
         isShutDown = true;
-        ServerUtils.close(serverSocket);
+        IoUtils.close(serverSocket);
         logger.info("server has shut down");
     }
 }

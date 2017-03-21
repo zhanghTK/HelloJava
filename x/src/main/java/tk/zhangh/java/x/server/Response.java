@@ -2,6 +2,7 @@ package tk.zhangh.java.x.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tk.zhangh.toolkit.IoUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -70,6 +71,6 @@ public class Response {
     }
 
     public void close() {
-        ServerUtils.close(bufferedWriter);
+        IoUtils.close(bufferedWriter);
     }
 }

@@ -136,4 +136,14 @@ public class FileHelper {
         }
         return dir.delete();
     }
+
+    public void reverse(File src, File dest) throws IOException {
+        try (InputStream inStream = new FileInputStream(src);
+             OutputStream outStream = new FileOutputStream(dest)) {
+            int data;
+            while ((data = inStream.read()) != -1) {
+                outStream.write(data ^ 0xff);
+            }
+        }
+    }
 }

@@ -3,6 +3,7 @@ package tk.zhangh.java.x.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tk.zhangh.java.x.server.exception.ServletNotFoundException;
+import tk.zhangh.toolkit.IoUtils;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -51,6 +52,6 @@ public class Dispatcher implements Runnable {
                 logger.error("push to client error", e1);
             }
         }
-        ServerUtils.close(client);
+        IoUtils.close(client);
     }
 }

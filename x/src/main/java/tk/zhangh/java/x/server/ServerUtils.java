@@ -1,7 +1,5 @@
 package tk.zhangh.java.x.server;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
@@ -19,22 +17,6 @@ public class ServerUtils {
             return URLDecoder.decode(value, "utf-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public static void close(Closeable closeable) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void closeAll(Closeable... closeables) {
-        for (Closeable closeable : closeables) {
-            close(closeable);
         }
     }
 }

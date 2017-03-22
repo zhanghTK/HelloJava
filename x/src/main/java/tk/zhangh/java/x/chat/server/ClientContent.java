@@ -8,18 +8,12 @@ import java.util.List;
  * Created by ZhangHao on 2017/3/16.
  */
 public class ClientContent {
-    private List<ClientChannel> clients;
     private List<User> users = new ArrayList<>();
 
     public void register(Socket client) {
         User user = new User(client, this);
         new Thread(user).start();
         users.add(user);
-    }
-
-    public void register(ClientChannel clientChannel) {
-        clients.add(clientChannel);
-        new Thread(clientChannel).start();
     }
 
     public List<User> getUsers() {

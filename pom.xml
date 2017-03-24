@@ -17,6 +17,7 @@
         <module>io</module>
         <module>x</module>
         <module>toolkit</module>
+        <module>concurrent</module>
     </modules>
 
     <properties>

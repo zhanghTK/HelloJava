@@ -1,4 +1,4 @@
-package tk.zhangh.java.concurrent;
+package tk.zhangh.java.concurrent.thread;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,6 +8,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class SimpleWN {
     private static final Object lock = new Object();
+
+    public static void main(String[] args) {
+        Thread thread1 = new T1();
+        Thread thread1_1 = new T1();
+        Thread thread2 = new T2();
+        thread1.start();
+        thread1_1.start();
+        thread2.start();
+    }
 
     private static class T1 extends Thread {
         @Override
@@ -40,14 +49,5 @@ public class SimpleWN {
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Thread thread1 = new T1();
-        Thread thread1_1 = new T1();
-        Thread thread2 = new T2();
-        thread1.start();
-        thread1_1.start();
-        thread2.start();
     }
 }

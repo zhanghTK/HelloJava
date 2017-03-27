@@ -1,4 +1,4 @@
-package tk.zhangh.java.concurrent;
+package tk.zhangh.java.concurrent.thread;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,10 +1,19 @@
-package tk.zhangh.java.concurrent;
+package tk.zhangh.java.concurrent.thread;
 
 /**
  * 设置线程优先级
  * Created by ZhangHao on 2017/3/24.
  */
 public class PriorityDemo {
+
+    public static void main(String[] args) {
+        Thread high = new ThreadPriority("high");
+        Thread low = new ThreadPriority("low");
+        low.setPriority(Thread.MIN_PRIORITY);
+        high.setPriority(Thread.MAX_PRIORITY);
+        high.start();
+        low.start();
+    }
 
     private static class ThreadPriority extends Thread {
         private static int count = 0;
@@ -25,14 +34,5 @@ public class PriorityDemo {
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Thread high = new ThreadPriority("high");
-        Thread low = new ThreadPriority("low");
-        low.setPriority(Thread.MIN_PRIORITY);
-        high.setPriority(Thread.MAX_PRIORITY);
-        high.start();
-        low.start();
     }
 }

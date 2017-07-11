@@ -1,4 +1,4 @@
-package tk.zhangh.java.concurrent.thread;
+package tk.zhangh.java.concurrent;
 
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -16,6 +16,16 @@ public class CountDownLatchExamDemo {
 
     private static final CountDownLatch end = new CountDownLatch(NUM);
 
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService service = Executors.newFixedThreadPool(NUM);
+        System.out.println("考试开始");
+        for (int i = 0; i < NUM; i++) {
+            service.submit(new Person("thread-" + i));
+        }
+        end.await();
+        service.shutdown();
+    }
+
     private static class Person extends Thread {
         public Person(String name) {
             super(name);
@@ -32,15 +42,5 @@ public class CountDownLatchExamDemo {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        ExecutorService service = Executors.newFixedThreadPool(NUM);
-        System.out.println("考试开始");
-        for (int i = 0; i < NUM; i++) {
-            service.submit(new Person("thread-" + i));
-        }
-        end.await();
-        service.shutdown();
     }
 }

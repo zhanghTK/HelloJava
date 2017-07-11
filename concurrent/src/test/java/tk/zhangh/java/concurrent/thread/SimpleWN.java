@@ -3,7 +3,10 @@ package tk.zhangh.java.concurrent.thread;
 import java.util.concurrent.TimeUnit;
 
 /**
- * wait/notifyAll
+ * wait/notifyAll：
+ * 1. 通过一个（monitor）对象让线程停下来或是动起来
+ * 2. 操作之前一定要获得对象锁（monitor的锁）
+ * 3. wait执行后会释放持有的锁，直到其他线程notify monitor时重新持有锁
  * Created by ZhangHao on 2017/3/25.
  */
 public class SimpleWN {
@@ -42,6 +45,7 @@ public class SimpleWN {
                 System.out.println(System.currentTimeMillis() + " T2 wait for object");
                 lock.notifyAll();
                 System.out.println(System.currentTimeMillis() + " T2 end!");
+                // 延迟2秒，2秒后释放锁T1线程才能再次获得锁，被激活
                 try {
                     TimeUnit.SECONDS.sleep(2);
                 } catch (InterruptedException e) {

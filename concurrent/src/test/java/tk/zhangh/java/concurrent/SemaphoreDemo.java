@@ -1,35 +1,47 @@
 package tk.zhangh.java.concurrent;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 /**
- * 信号量使用
- * Created by ZhangHao on 2017/3/28.
+ * Created by ZhangHao on 2017/3/23.
  */
-public class SemaphoreDemo implements Runnable {
-    private final Semaphore semaphore = new Semaphore(5);
+@Slf4j
+public class SemaphoreDemo {
+    private static final int WORKER_NUMBER = 10;
+    private static final int RESOURCE_NUM = 3;
+    private static final boolean isFair = true;
 
-    public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(20);
-        final SemaphoreDemo semaphoreDemo = new SemaphoreDemo();
-        for (int i = 0; i < 20; i++) {
-            executorService.submit(semaphoreDemo);
-        }
+    public static void main(String[] args) throws Exception {
+        Semaphore semaphore = new Semaphore(RESOURCE_NUM, isFair);
+        Stream.iterate(0, item -> item + 1)
+                .limit(WORKER_NUMBER)
+                .forEach(i -> new Thread(new Worker(i, semaphore)).start());
     }
 
-    @Override
-    public void run() {
-        try {
-            semaphore.acquire(2);
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println(Thread.currentThread().getId() + ": done!");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            semaphore.release(2);
+    @Data
+    @AllArgsConstructor
+    static class Worker implements Runnable {
+        private int name;
+        private Semaphore semaphore;
+
+        @Override
+        public void run() {
+            try {
+                log.info("{} wait resource", name);
+                semaphore.acquire();
+                log.info("{} get resource", name);
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            semaphore.release();
+            log.info("{} release resource", name);
         }
     }
 }

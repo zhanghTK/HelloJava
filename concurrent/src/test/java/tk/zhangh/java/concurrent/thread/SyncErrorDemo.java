@@ -1,18 +1,16 @@
 package tk.zhangh.java.concurrent.thread;
 
 /**
- * 实例方法锁
+ * 错误的实例方法锁
+ * 加载不同的对象上
  * Created by ZhangHao on 2017/3/25.
  */
-public class AccountingSync2 implements Runnable {
-
-    private static AccountingSync2 instance = new AccountingSync2();
-
+public class SyncErrorDemo implements Runnable {
     private static int i = 0;
 
     public static void main(String[] args) throws InterruptedException {
-        Thread thread1 = new Thread(instance);
-        Thread thread2 = new Thread(instance);
+        Thread thread1 = new Thread(new SyncErrorDemo());
+        Thread thread2 = new Thread(new SyncErrorDemo());
         thread1.start();
         thread2.start();
         thread1.join();

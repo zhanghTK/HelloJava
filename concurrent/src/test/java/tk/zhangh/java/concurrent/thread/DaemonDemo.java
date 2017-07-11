@@ -18,7 +18,7 @@ public class DaemonDemo {
                 }
             }
         });
-        thread.setDaemon(true);
+        thread.setDaemon(true);  // 设置守护线程
         thread.start();
         TimeUnit.SECONDS.sleep(3);
     }

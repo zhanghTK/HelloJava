@@ -2,13 +2,14 @@ package tk.zhangh.java.concurrent.thread;
 
 /**
  * 对象锁
+ * 锁对象
  * Created by ZhangHao on 2017/3/24.
  */
-public class AccountingSync implements Runnable {
+public class SyncInstance implements Runnable {
 
-    private static AccountingSync instance = new AccountingSync();
+    private static SyncInstance instance = new SyncInstance();
 
-    private static int count =0;
+    private static int count = 0;
 
     public static void main(String[] args) throws InterruptedException {
         Thread thread1 = new Thread(instance);

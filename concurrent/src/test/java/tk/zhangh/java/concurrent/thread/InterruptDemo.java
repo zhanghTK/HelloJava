@@ -7,6 +7,7 @@ import java.util.Optional;
 
 /**
  * InterruptDemo
+ * 通过轮询线程状态中断线程
  * Created by ZhangHao on 2017/3/27.
  */
 public class InterruptDemo {

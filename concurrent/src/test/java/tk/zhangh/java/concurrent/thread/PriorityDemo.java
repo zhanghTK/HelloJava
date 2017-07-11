@@ -8,9 +8,9 @@ public class PriorityDemo {
 
     public static void main(String[] args) {
         Thread high = new ThreadPriority("high");
+        high.setPriority(Thread.MAX_PRIORITY);  // 设置线程高优先级
         Thread low = new ThreadPriority("low");
-        low.setPriority(Thread.MIN_PRIORITY);
-        high.setPriority(Thread.MAX_PRIORITY);
+        low.setPriority(Thread.MIN_PRIORITY);  // 设置线程低优先级
         high.start();
         low.start();
     }

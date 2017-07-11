@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Stop线程Demo
+ * 终止线程，不推荐使用，直接结束线程会造成状态不一致、抛出ThreadDeath
  * Created by ZhangHao on 2017/3/27.
  */
 public class StopDemo {
@@ -31,5 +32,4 @@ public class StopDemo {
         TimeUnit.SECONDS.sleep(1);
         t.stop();
     }
-
 }

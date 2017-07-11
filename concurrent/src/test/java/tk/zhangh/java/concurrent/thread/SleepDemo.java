@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
  * 线程睡眠Demo
  * 查看线程具体状态
  * 可以看到sleeping-thread处于TIMED_WAITING状态
+ * 处于sleep的线程的是TIMED_WAITING状态的
  * Created by ZhangHao on 2017/3/27.
  */
 public class SleepDemo {

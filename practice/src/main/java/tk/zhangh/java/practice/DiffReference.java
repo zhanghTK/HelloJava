@@ -6,7 +6,7 @@ import java.lang.ref.*;
 import java.util.*;
 
 /**
- * 各种引用对象对比
+ * 各种引用类型对比
  * Created by ZhangHao on 2017/3/20.
  */
 public class DiffReference {

@@ -3,7 +3,7 @@ package tk.zhangh.java.practice;
 import java.util.Arrays;
 
 /**
- * 测试自动装箱，拆箱对反射的影响
+ * 验证自动装箱，拆箱对反射的影响
  * public Method getDeclaredMethod(String name, Class<?>... parameterTypes)
  * 中 parameterTypes 对基本类型和包装类不能自动转换，例如：
  * int.class 与 Integer.class 是不同的

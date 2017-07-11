@@ -15,7 +15,7 @@ import java.security.cert.X509Certificate;
 import java.security.spec.PKCS8EncodedKeySpec;
 
 /**
- * 签名服务
+ * 签名工具
  * 使用私钥签名,使用证书验证数据
  * Created by ZhangHao on 2017/3/18.
  */

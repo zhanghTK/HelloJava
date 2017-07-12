@@ -1,4 +1,4 @@
-package tk.zhangh.java.concurrent;
+package tk.zhangh.java.concurrent.sync;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 /**
+ * Semaphore使用
+ * Semaphore是线程间同时访问的临界区资源
+ *
+ * 例子：10个线程访问3个资源
  * Created by ZhangHao on 2017/3/23.
  */
 @Slf4j
@@ -18,6 +22,7 @@ public class SemaphoreDemo {
     private static final boolean isFair = true;
 
     public static void main(String[] args) throws Exception {
+        // 初始化资源个数，资源访问的公平性
         Semaphore semaphore = new Semaphore(RESOURCE_NUM, isFair);
         Stream.iterate(0, item -> item + 1)
                 .limit(WORKER_NUMBER)

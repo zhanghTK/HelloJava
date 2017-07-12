@@ -1,11 +1,18 @@
-package tk.zhangh.java.concurrent;
+package tk.zhangh.java.concurrent.sync;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * 可以先unpark，在park
- * 唤醒线程unpark，中断（不抛出异常，需要使用Thread.interrupted获得中断）
+ * LockSupport提供线程阻塞原语
+ * park：暂停线程
+ * unpark：继续执行指定的线程
+ * 相比suspend/resume不容易引起线程冻结（可以先unpark，再park，不会引用死锁）
+ * 内部实现类似于信号量，park申请资源，unpark归还资源
+ *
+ * 唤醒线程的两种操作：
+ * 1. unpark
+ * 2. 中断（注意：不抛出中断异常，需要使用Thread.interrupted获得中断）
  * Created by ZhangHao on 2017/3/29.
  */
 public class LockSupportDemo {

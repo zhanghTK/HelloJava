@@ -1,4 +1,4 @@
-package tk.zhangh.java.concurrent;
+package tk.zhangh.java.concurrent.sync;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 信号量使用
+ *
+ * 使用线程池访问共享信号量
  * Created by ZhangHao on 2017/3/28.
  */
 public class SemaphoreDemo2 implements Runnable {

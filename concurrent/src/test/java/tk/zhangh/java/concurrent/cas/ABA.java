@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * ABA问题
+ * 并发场景下的ABA问题
  * Created by ZhangHao on 2017/3/28.
  */
 public class ABA {

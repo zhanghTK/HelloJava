@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
  * AtomicStampedReference Demo
+ * 使用AtomicStampedReference解决并发场景下的ABA问题
  * Created by ZhangHao on 2017/3/28.
  */
 public class AtomicStampedReferenceDemo {

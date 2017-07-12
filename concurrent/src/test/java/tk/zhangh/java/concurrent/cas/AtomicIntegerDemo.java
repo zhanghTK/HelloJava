@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * AtomicInteger Demo
+ * 并发场景下使用AtomicInteger自增
  * Created by ZhangHao on 2017/3/27.
  */
 public class AtomicIntegerDemo {

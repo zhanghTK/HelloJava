@@ -8,11 +8,13 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 /**
  * AtomicIntegerFieldUpdater Demo
+ * 让普通变量享受原子操作
  * Created by ZhangHao on 2017/3/28.
  */
 public class AtomicIntegerFieldUpdaterDemo {
+
     private final static AtomicIntegerFieldUpdater<Candidate> scoreUpdater =
-            AtomicIntegerFieldUpdater.newUpdater(Candidate.class, "score");
+            AtomicIntegerFieldUpdater.newUpdater(Candidate.class, "score");  // 指定类型，字段名
     private static AtomicInteger allScore = new AtomicInteger(0);
 
     public static void main(String[] args) throws InterruptedException {

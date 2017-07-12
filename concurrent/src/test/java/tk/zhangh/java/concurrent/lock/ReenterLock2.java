@@ -4,6 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * ReentrantLock多次加锁
+ * 可以多次加锁，但需要手动释放锁
  * Created by ZhangHao on 2017/3/28.
  */
 public class ReenterLock2 implements Runnable {

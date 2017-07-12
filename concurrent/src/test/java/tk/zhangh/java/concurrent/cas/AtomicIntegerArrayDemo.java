@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
 
 /**
  * AtomicIntegerArray Demo
+ * 支持无锁的数组
  * Created by ZhangHao on 2017/3/28.
  */
 public class AtomicIntegerArrayDemo {

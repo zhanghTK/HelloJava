@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 可见性问题示例
- * -server模式下永远无法停下来
+ * -server模式下永远无法停下来(JDK版本也有关系)
  * JVM优化只在循环开始时检测stop变量
  * Created by ZhangHao on 2017/3/27.
  */

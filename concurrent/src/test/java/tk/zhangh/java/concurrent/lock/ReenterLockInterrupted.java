@@ -6,21 +6,22 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * ReentrantLock 可中断的加锁
+ * ReentrantLock
+ * 可中断的加锁
  * Created by ZhangHao on 2017/3/28.
  */
-public class ReenterLockInt implements Runnable {
+public class ReenterLockInterrupted implements Runnable {
     private static ReentrantLock lock1 = new ReentrantLock();
     private static ReentrantLock lock2 = new ReentrantLock();
     private int lock;
 
-    private ReenterLockInt(int lock) {
+    private ReenterLockInterrupted(int lock) {
         this.lock = lock;
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ReenterLockInt r1 = new ReenterLockInt(1);
-        ReenterLockInt r2 = new ReenterLockInt(2);
+        ReenterLockInterrupted r1 = new ReenterLockInterrupted(1);
+        ReenterLockInterrupted r2 = new ReenterLockInterrupted(2);
         Thread thread1 = new Thread(r1);
         Thread thread2 = new Thread(r2);
         thread1.start();

@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * AtomicReference Demo
+ * 并发场景下是使用AtomicReference修改引用
  * Created by ZhangHao on 2017/3/27.
  */
 public class AtomicReferenceDemo {

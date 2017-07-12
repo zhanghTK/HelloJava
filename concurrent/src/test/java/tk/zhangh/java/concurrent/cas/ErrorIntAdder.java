@@ -2,9 +2,10 @@ package tk.zhangh.java.concurrent.cas;
 
 /**
  * 没有使用锁，也没有确保CAS操作
+ * 结果小于预期值
  * Created by ZhangHao on 2017/3/27.
  */
-public class BadIntAdder {
+public class ErrorIntAdder {
     private static int count = 0;
 
     public static void main(String[] args) throws Exception {
@@ -26,7 +27,10 @@ public class BadIntAdder {
         @Override
         public void run() {
             for (int i = 0; i < 10000; i++) {
+                // 不加锁则异常
+//                synchronized (ErrorIntAdder.class) {
                 count++;
+//                }
             }
         }
     }

@@ -7,11 +7,11 @@ import java.util.concurrent.locks.ReentrantLock;
  * ReentrantLock 根据时间等待锁
  * Created by ZhangHao on 2017/3/28.
  */
-public class TimeLock implements Runnable {
+public class ReentrantLockTimer implements Runnable {
     private static ReentrantLock lock = new ReentrantLock();
 
     public static void main(String[] args) {
-        TimeLock timeLock = new TimeLock();
+        ReentrantLockTimer timeLock = new ReentrantLockTimer();
         Thread thread1 = new Thread(timeLock);
         Thread thread2 = new Thread(timeLock);
         thread1.start();

@@ -1,4 +1,4 @@
-package tk.zhangh.java.concurrent;
+package tk.zhangh.java.concurrent.sync;
 
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -23,11 +23,12 @@ public class CountDownLatchExamDemo {
             service.submit(new Person("thread-" + i));
         }
         end.await();
+        System.out.println("考试结束");
         service.shutdown();
     }
 
     private static class Person extends Thread {
-        public Person(String name) {
+        Person(String name) {
             super(name);
         }
 

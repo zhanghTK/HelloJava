@@ -4,6 +4,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * ReentrantLock基本用法
+ * ReentrantLock对synchronized改改进：
+ * 1. lockInterruptibly:获得锁，但优先响应中断
+ * 2. tryLock：尝试获得锁，成功返回true，失败立即返false，不等待
+ * 3. tryLock(long time, TimeUnit unit)：在给定时间内尝试获得锁
+ * 4. unlock：释放锁
+ * 5. ReentrantLock(boolean fair)：确保同步线程之间的访问公平
+ *
  * Created by ZhangHao on 2017/3/28.
  */
 public class ReenterLockDemo implements Runnable {

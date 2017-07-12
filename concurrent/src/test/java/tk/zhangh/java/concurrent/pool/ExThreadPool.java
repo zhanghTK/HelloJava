@@ -16,6 +16,7 @@ public class ExThreadPool {
         ExecutorService service = new ThreadPoolExecutor(5, 6, 0, TimeUnit.MICROSECONDS, new LinkedBlockingQueue<>()) {
             @Override
             protected void beforeExecute(Thread t, Runnable r) {
+                System.out.println(t.getName());
                 System.out.println("准备执行：" + ((Task) r).name);
             }
 

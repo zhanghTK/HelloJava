@@ -3,6 +3,7 @@ package tk.zhangh.java.concurrent.lock;
 /**
  * 错误加锁
  * 对包装类加锁
+ * 包装类型会进行自动拆箱作为基本类型
  * Created by ZhangHao on 2017/4/5.
  */
 public class ErrorLocal {

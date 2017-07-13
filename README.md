@@ -8,7 +8,7 @@ My Java Code Repository.
 
 - [concurrent](https://github.com/zhanghTK/Joolkit/tree/master/concurrent)
 
-  并发学习
+  并发学习工具使用示例
 
 - [entity](https://github.com/zhanghTK/Joolkit/tree/master/entity)
 
@@ -16,7 +16,7 @@ My Java Code Repository.
 
 - [io](https://github.com/zhanghTK/Joolkit/tree/master/io)
 
-  基本文件，文件夹操作；基本 Excel 操作
+  基本文件，文件夹操作；基本 Excel 操作；NIO 使用示例
 
 - [log](https://github.com/zhanghTK/Joolkit/tree/master/log)
 

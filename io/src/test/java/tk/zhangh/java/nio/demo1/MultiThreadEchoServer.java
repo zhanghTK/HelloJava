@@ -1,4 +1,4 @@
-package tk.zhangh.java.nio;
+package tk.zhangh.java.nio.demo1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * BIO多线程网络服务端
  * Created by ZhangHao on 2017/3/30.
  */
 public class MultiThreadEchoServer {
@@ -16,7 +17,7 @@ public class MultiThreadEchoServer {
 
     public static void main(String[] args) {
         ServerSocket echoServer = null;
-        Socket clientSocket = null;
+        Socket clientSocket;
         try {
             echoServer = new ServerSocket(8000);
         } catch (Exception e) {
@@ -47,7 +48,7 @@ public class MultiThreadEchoServer {
             try {
                 is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 os = new PrintWriter(clientSocket.getOutputStream(), true);
-                String inputLine = null;
+                String inputLine;
                 long b = System.currentTimeMillis();
                 while ((inputLine = is.readLine()) != null) {
                     os.println(inputLine);

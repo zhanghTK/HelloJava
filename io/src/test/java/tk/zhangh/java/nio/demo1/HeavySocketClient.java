@@ -1,4 +1,4 @@
-package tk.zhangh.java.nio;
+package tk.zhangh.java.nio.demo1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.locks.LockSupport;
 
 /**
+ * 模拟多线程BIO网络客户端
  * Created by ZhangHao on 2017/3/30.
  */
 public class HeavySocketClient {

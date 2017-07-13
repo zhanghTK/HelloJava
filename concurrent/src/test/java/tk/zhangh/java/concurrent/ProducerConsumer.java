@@ -14,9 +14,6 @@ public class ProducerConsumer {
     private static BlockingQueue<PCData> queue = new LinkedBlockingDeque<>();
 
     public static void main(String[] args) {
-//        new Thread(new Consumer()).start();
-//        new Thread(new Producer()).start();
-//        new Thread(new Producer()).start();
         ExecutorService service = Executors.newFixedThreadPool(11);
         for (int i = 0; i < 10; i++) {
             service.submit(new Consumer());

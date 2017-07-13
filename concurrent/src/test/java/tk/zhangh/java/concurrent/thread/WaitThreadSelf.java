@@ -4,9 +4,10 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * thread使用wait方法暂停自己
+ * 注意wait和notify之前都要获得对象锁
  * Created by ZhangHao on 2017/3/29.
  */
-public class WaitThreadSelfTest {
+public class WaitThreadSelf {
     public static void main(String[] args) throws InterruptedException {
         class TestThread implements Runnable {
             @Override

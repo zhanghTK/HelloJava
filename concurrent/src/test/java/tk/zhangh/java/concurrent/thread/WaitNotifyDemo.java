@@ -5,11 +5,12 @@ import java.util.concurrent.TimeUnit;
 /**
  * wait/notifyAll：
  * 1. 通过一个（monitor）对象让线程停下来或是动起来
- * 2. 操作之前一定要获得对象锁（monitor的锁）
+ * 2. 两个操作之前一定要获得对象锁（monitor的锁），否则抛出IllegalMonitorStateException
  * 3. wait执行后会释放持有的锁，直到其他线程notify monitor时重新持有锁
+ * demo:http://www.cnblogs.com/techyc/p/3272321.html
  * Created by ZhangHao on 2017/3/25.
  */
-public class SimpleWN {
+public class WaitNotifyDemo {
     private static final Object lock = new Object();
 
     public static void main(String[] args) {

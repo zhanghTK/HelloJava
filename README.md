@@ -35,6 +35,7 @@ My Java Code Repository.
   7. 验证自动装箱，拆箱对反射的影响
   8. 对比 String 和 StringBuilder
   9. 验证 try-catch-finally 执行顺序
+  10. ClassLoader 验证
 
 - [reflecttion](https://github.com/zhanghTK/Joolkit/tree/master/reflection)
 

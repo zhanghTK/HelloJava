@@ -6,23 +6,23 @@ My Java Code Repository.
 
 ## What's in it?
 
-- [concurrent](https://github.com/zhanghTK/Joolkit/tree/master/concurrent)
+- [concurrent](https://github.com/zhanghTK/JavaCodeRepository/tree/master/concurrent)
 
   并发学习工具使用示例
 
-- [entity](https://github.com/zhanghTK/Joolkit/tree/master/entity)
+- [entity](https://github.com/zhanghTK/JavaCodeRepository/tree/master/entity)
 
   自定义注解生成 SQL 语句
 
-- [io](https://github.com/zhanghTK/Joolkit/tree/master/io)
+- [io](https://github.com/zhanghTK/JavaCodeRepository/tree/master/io)
 
   基本文件，文件夹操作；基本 Excel 操作；NIO 使用示例
 
-- [log](https://github.com/zhanghTK/Joolkit/tree/master/log)
+- [log](https://github.com/zhanghTK/JavaCodeRepository/tree/master/log)
 
   使用 Spring AOP 定义日志切面
 
-- [practice](https://github.com/zhanghTK/Joolkit/tree/master/practice)
+- [practice](https://github.com/zhanghTK/JavaCodeRepository/tree/master/practice)
 
   验证问题的 demo 集合，包含以下内容：
 
@@ -37,11 +37,11 @@ My Java Code Repository.
   9. 验证 try-catch-finally 执行顺序
   10. ClassLoader 验证
 
-- [reflecttion](https://github.com/zhanghTK/Joolkit/tree/master/reflection)
+- [reflecttion](https://github.com/zhanghTK/JavaCodeRepository/tree/master/reflection)
 
   反射分析类，对象；封装反射 API 调用
 
-- [toolkit](https://github.com/zhanghTK/Joolkit/tree/master/toolkit)
+- [toolkit](https://github.com/zhanghTK/JavaCodeRepository/tree/master/toolkit)
 
   开箱即用的小工具：
 
@@ -50,7 +50,7 @@ My Java Code Repository.
   - Map 工具
   - 签名，验证工具
 
-- [x](https://github.com/zhanghTK/Joolkit/tree/master/x)
+- [x](https://github.com/zhanghTK/JavaCodeRepository/tree/master/x)
 
   框架/服务原型 demo：
 
@@ -58,3 +58,7 @@ My Java Code Repository.
   - 生命周期事件框架
   - 模拟 RPC 调用
   - HTTP Server
+
+- [spi](https://github.com/zhanghTK/JavaCodeRepository/tree/master/spi)
+
+  SPI demo

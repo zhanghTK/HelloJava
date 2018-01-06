@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * ReentrantLock
- * 可中断的加锁
+ * 可中断的加锁，响应中断后需要手动释放锁
  * Created by ZhangHao on 2017/3/28.
  */
 public class ReenterLockInterrupted implements Runnable {
@@ -53,9 +53,11 @@ public class ReenterLockInterrupted implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            // 如果lock1持有锁，释放锁
             if (lock1.isHeldByCurrentThread()) {
                 lock1.unlock();
             }
+            // 如果lock2持有锁，释放锁
             if (lock2.isHeldByCurrentThread()) {
                 lock2.unlock();
             }

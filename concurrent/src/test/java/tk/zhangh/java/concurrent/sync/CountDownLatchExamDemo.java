@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 使用CountDownLatch模拟单场考试
+ * 所有考生交卷后考试结束
  * Created by ZhangHao on 17/4/9.
  */
 public class CountDownLatchExamDemo {

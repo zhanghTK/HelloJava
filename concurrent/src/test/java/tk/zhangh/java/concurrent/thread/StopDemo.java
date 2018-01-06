@@ -23,7 +23,7 @@ public class StopDemo {
         Thread t = new Thread(() -> {
             try {
                 Arrays.sort(array);
-                System.out.println("sort end");
+                System.out.println("sort finished");
             } catch (Error err) {
                 err.printStackTrace();
             }

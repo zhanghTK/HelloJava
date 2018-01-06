@@ -8,6 +8,11 @@ import java.util.Optional;
 /**
  * InterruptDemo
  * 通过轮询线程状态中断线程
+ * 与中断相关的方法：
+ * public void Thread.interrupt();  // 中断线程
+ * public boolean Thread.isInterrupted();  // 判断是否被中断
+ * public static boolean Thread.interrupted();  // 判断是否被中断，并清除当前中断状态
+ * 注意：异常抛出后会清除中断标记位，如果catch要调用 Thread.currentThread.interrupt();恢复中断
  * Created by ZhangHao on 2017/3/27.
  */
 public class InterruptDemo {

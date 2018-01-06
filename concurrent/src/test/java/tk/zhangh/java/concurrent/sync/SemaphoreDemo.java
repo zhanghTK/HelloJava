@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 /**
  * Semaphore使用
  * Semaphore是线程间同时访问的临界区资源
- *
+ * 申请的资源使用后需要手动释放
  * 例子：10个线程访问3个资源
  * Created by ZhangHao on 2017/3/23.
  */

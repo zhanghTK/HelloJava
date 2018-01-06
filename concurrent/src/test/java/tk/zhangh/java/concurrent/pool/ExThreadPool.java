@@ -13,7 +13,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class ExThreadPool {
     public static void main(String[] args) throws InterruptedException {
-        ExecutorService service = new ThreadPoolExecutor(5, 6, 0, TimeUnit.MICROSECONDS, new LinkedBlockingQueue<>()) {
+        ExecutorService service = new ThreadPoolExecutor(5,
+                6, 0, TimeUnit.MICROSECONDS, new LinkedBlockingQueue<>()) {
             @Override
             protected void beforeExecute(Thread t, Runnable r) {
                 System.out.println(t.getName());

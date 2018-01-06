@@ -10,23 +10,26 @@ import java.util.concurrent.TimeUnit;
  */
 public class VisibilityTest extends Thread {
 
-    //    private volatile boolean stop;
-    private boolean isStop;
 
     public static void main(String[] args) throws Exception {
-        VisibilityTest visibilityTest = new VisibilityTest();
-        visibilityTest.start();
+        Thread thread = new Thread(new Runner());
+        thread.start();
         TimeUnit.SECONDS.sleep(1);
-        visibilityTest.isStop = true;
-        TimeUnit.SECONDS.sleep(2);
+        Runner.isStop = true;
     }
 
-    @Override
-    public void run() {
-        int i = 0;
-        while (!isStop) {
-            i++;
+    static class Runner implements Runnable {
+
+//            private static volatile boolean isStop;
+        private static boolean isStop;
+
+        @Override
+        public void run() {
+            int i = 0;
+            while (!isStop) {
+                i++;
+            }
+            System.out.println(i);
         }
-        System.out.println(i);
     }
 }

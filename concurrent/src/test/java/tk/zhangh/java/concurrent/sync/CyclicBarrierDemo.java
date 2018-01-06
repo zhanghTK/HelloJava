@@ -19,7 +19,7 @@ public class CyclicBarrierDemo {
             service.submit(new Task(cyclicBarrier));
         }
         TimeUnit.SECONDS.sleep(5);
-        service.shutdown();
+        service.shutdownNow();
     }
 
     public static class Task extends Thread {
@@ -35,7 +35,8 @@ public class CyclicBarrierDemo {
                 try {
                     cyclicBarrier.await();
                 } catch (InterruptedException | BrokenBarrierException e) {
-                    e.printStackTrace();
+                    System.out.println("等待其他任务，但被中断");
+                    break;
                 }
                 doWork();
             }
@@ -45,7 +46,7 @@ public class CyclicBarrierDemo {
             try {
                 TimeUnit.MILLISECONDS.sleep(new Random().nextInt() % 1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("正在执行任务，但被中断");
             }
             System.out.println("任务完成");
         }

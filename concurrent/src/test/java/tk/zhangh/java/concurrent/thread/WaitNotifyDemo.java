@@ -13,12 +13,13 @@ import java.util.concurrent.TimeUnit;
 public class WaitNotifyDemo {
     private static final Object lock = new Object();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Thread thread1 = new T1();
         Thread thread1_1 = new T1();
         Thread thread2 = new T2();
         thread1.start();
         thread1_1.start();
+        Thread.sleep(1000);  // 确保thread1_1启动
         thread2.start();
     }
 

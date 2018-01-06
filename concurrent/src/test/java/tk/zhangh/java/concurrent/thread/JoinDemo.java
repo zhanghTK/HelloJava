@@ -1,7 +1,7 @@
 package tk.zhangh.java.concurrent.thread;
 
 /**
- * join含义：我就是欺负你，你等着，我先来
+ * thread.join含义：让thread优先执行
  * join本质：
  * while(isAlive()) {
  * wait(0);  // 当前线程等待在调用wait操作的地方
@@ -17,7 +17,8 @@ public class JoinDemo {
             }
         });
         thread.start();
-        // 实质：thread.wait，使用thread作为monitor，让main线程停下来。notify的操作由 JVM 执行
+        // 实质：对main线程执行thread.wait
+        // 使用thread作为monitor，让main线程停下来。notify的操作由 JVM 执行
         thread.join();
         System.out.println(count);
     }

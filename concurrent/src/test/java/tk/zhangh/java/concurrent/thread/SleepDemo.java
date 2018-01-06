@@ -13,16 +13,20 @@ public class SleepDemo {
     public static void main(String[] args) throws Exception {
         Thread thread = new Thread(() -> {
             try {
-                TimeUnit.HOURS.sleep(1);
+                TimeUnit.HOURS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
+                while (true) {
+                    System.out.print("");
+                }
             }
         });
         thread.setName("sleeping-thread");
         thread.start();
-        thread.interrupt();
         TimeUnit.SECONDS.sleep(1);
-        System.out.println(thread.isInterrupted());
-        System.out.println(thread.isAlive());
+        thread.interrupt();
+        System.out.println("isInterrupted:" + thread.isInterrupted());
+        System.out.println("isAlive:" + thread.isAlive());
     }
 }

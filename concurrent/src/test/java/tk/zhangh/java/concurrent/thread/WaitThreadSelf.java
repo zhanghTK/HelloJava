@@ -28,7 +28,7 @@ public class WaitThreadSelf {
             }
         }
         Runnable runnable = new TestThread();
-        final Thread thread = new Thread(new TestThread());
+        final Thread thread = new Thread(runnable);
         thread.start();
         // 主线程等待3秒，让创建的线程执行
         TimeUnit.SECONDS.sleep(3);

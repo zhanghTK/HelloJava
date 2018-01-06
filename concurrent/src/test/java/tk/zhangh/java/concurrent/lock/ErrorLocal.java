@@ -21,7 +21,7 @@ public class ErrorLocal {
 
     private static class AddThread extends Thread {
         public void run() {
-            for (int k = 0; k < 100000; k++) {
+            for (int k = 0; k < 10000000; k++) {
                 synchronized (i) {
                     i++;
                 }

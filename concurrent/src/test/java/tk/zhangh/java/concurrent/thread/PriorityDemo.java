@@ -2,6 +2,7 @@ package tk.zhangh.java.concurrent.thread;
 
 /**
  * 设置线程优先级
+ * 不建议使用，依赖OS实现
  * Created by ZhangHao on 2017/3/24.
  */
 public class PriorityDemo {

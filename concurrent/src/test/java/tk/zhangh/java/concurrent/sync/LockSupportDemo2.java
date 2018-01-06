@@ -16,7 +16,7 @@ public class LockSupportDemo2 {
         });
         thread.start();
         TimeUnit.SECONDS.sleep(1);
-        thread.interrupt();
-
+        thread.interrupt();  // Thread.currentThread().isInterrupted():true
+//        LockSupport.unpark(thread);  // Thread.currentThread().isInterrupted():false
     }
 }

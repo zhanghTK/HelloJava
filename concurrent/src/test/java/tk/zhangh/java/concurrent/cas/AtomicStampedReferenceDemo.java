@@ -11,15 +11,16 @@ public class AtomicStampedReferenceDemo {
     private static AtomicStampedReference<Integer> account = new AtomicStampedReference<>(19, 0);
 
     public static void main(String[] args) {
+        // 三个线程模拟充值
         for (int i = 0; i < 3; i++) {
             int timestamp = account.getStamp();
             new Thread(() -> {
-                while (true) {
-                    while (true) {
+                while (true) {  // 持续
+                    while (true) {  // 自旋
                         Integer money = account.getReference();
                         if (money < 20) {
                             if (account.compareAndSet(money, money + 20, timestamp, timestamp + 1)) {
-                                System.out.println("余额小于20元，充值成功，余额：" + account.getReference() + "员");
+                                System.out.println("余额小于20元，充值成功，余额：" + (money + 20) + "员");
                                 break;
                             }
                         } else {
@@ -29,6 +30,7 @@ public class AtomicStampedReferenceDemo {
                 }
             }).start();
         }
+        // 一个线程模拟消费，尝试一百次
         new Thread(() -> {
             for (int i = 0; i < 100; i++) {
                 while (true) {

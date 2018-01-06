@@ -1,37 +1,44 @@
 package tk.zhangh.java.concurrent.lock;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * ReentrantLock与Condition使用示例
+ * Condition类似与object.wait和object.notify
  * Created by ZhangHao on 2017/3/28.
  */
-public class ReenterLockCondition implements Runnable {
+public class ReenterLockCondition {
+    private static AtomicInteger count = new AtomicInteger(0);
     private static ReentrantLock lock = new ReentrantLock();
     private static Condition condition = lock.newCondition();
 
     public static void main(String[] args) throws InterruptedException {
-        ReenterLockCondition reenterLockCondition = new ReenterLockCondition();
-        Thread thread1 = new Thread(reenterLockCondition);
+        Thread thread1 = new Thread(new Runner(), "t1");
+        Thread thread2 = new Thread(new Runner(), "t2");
         thread1.start();
-        TimeUnit.SECONDS.sleep(2);
-        lock.lock();
-        condition.signal();
-        lock.unlock();
+        thread2.start();
+        TimeUnit.SECONDS.sleep(5);
     }
 
-    @Override
-    public void run() {
-        try {
-            lock.lock();
-            condition.await();
-            System.out.println("Thread is going on");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
+    static class Runner implements Runnable {
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    lock.lock();
+                    condition.signal();
+                    System.out.println(this.hashCode() + " add 1:" + count.addAndGet(1));
+                    condition.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package tk.zhangh.java.concurrent.sync;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.*;
 
@@ -12,20 +13,21 @@ public class CyclicBarrierExamDemo {
 
     private static final CyclicBarrier end = new CyclicBarrier(NUM, () -> System.out.println("本场考试结束,请离场"));
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         for (int i = 1; i <= 3; i++) {
             start(i);
-            TimeUnit.SECONDS.sleep(12);
         }
+        System.in.read();
     }
 
-    private static void start(int index) {
+    private static void start(int index) throws InterruptedException {
         ExecutorService service = Executors.newFixedThreadPool(NUM);
         System.out.println("\n第" + index + "场考试开始");
         for (int i = 0; i < NUM; i++) {
             service.submit(new Person("thread" + i));
         }
-        service.shutdown();
+        TimeUnit.SECONDS.sleep(5);
+        service.shutdownNow();
     }
 
     private static class Person extends Thread {
